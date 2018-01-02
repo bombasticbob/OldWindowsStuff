@@ -1,0 +1,51 @@
+NAME         SFTSHELL
+
+DESCRIPTION  'Stewart~Frazier Tools, Inc. DOS/BATCH "Shell" - A Command Line Interpreter for Microsoft(r) Windows(tm)'
+
+EXETYPE      WINDOWS       ; required for all Windows applications
+
+STUB         'SMRTSTUB.EXE' 
+
+CODE  LOADONCALL MOVEABLE SHARED CONFORMING DISCARDABLE
+
+DATA  PRELOAD MOVEABLE MULTIPLE
+
+SEGMENTS '_TEXT' PRELOAD EXECUTEREAD SHARED CONFORMING DISCARDABLE
+
+SEGMENTS '_HELP_TEXT_' CLASS 'CODE' LOADONCALL EXECUTEREAD SHARED MOVEABLE DISCARDABLE
+SEGMENTS '_HELP_TEXT2_' CLASS 'CODE' LOADONCALL EXECUTEREAD SHARED MOVEABLE DISCARDABLE
+
+SEGMENTS 'MyCtrlBreak_TEXT' PRELOAD FIXED EXECUTEREAD SHARED CONFORMING
+
+HEAPSIZE     8192          ; 8k heap because of LFN's
+STACKSIZE    16384         ; 16k (rather than just 5k or 8k or 12k)
+
+
+
+EXPORTS
+ MainWndProc                  @1  NONAME ; name of window processing function
+ About                        @2  NONAME ; name of "About" processing function
+ EditCommandDlg               @3  NONAME ; name of command line editor dialog box proc
+ CMDCloseTaskEnum             @4  NONAME ; name of 'CLOSETASK' window enumerator callback (WM_CLOSE)
+ CMDCloseTaskEnum2            @5  NONAME ; name of 'CLOSETASK' window enumerator callback (Title Strings)
+ CMDTaskListEnum              @6  NONAME ; name of 'TASKLIST' window enumerator callback (Title Strings)
+ CMDSubstEnum                 @7  NONAME ; enumeration function for 'SUBST'
+ RxCallBack                   @8  NONAME ; generic callback for REXX 'exit' functions
+ RxExternalCallback           @9  NONAME ; callback for EXTERNAL REXX functions
+ MyDdeCallBack               @10  NONAME ; callback for DDEML stuff
+ DispatchWithinHookTimerProc @11  NONAME ; part of MTHREAD
+ MthreadAppMsgHookProc       @12  NONAME ; part of MTHREAD
+
+ FolderDlgProc               @13  NONAME ; callback for 'Folder' dialog
+ QueueDlgProc                @14  NONAME ; callback for 'Queue' dialog
+ SubclassStaticWindowProc    @15  NONAME ; window callback for 'Static' subclassing
+ SubclassStaticEnumCallback  @16  NONAME ; enum callback for 'Static' subclassing
+ CalcGetWindowEnum           @17  NONAME ; enum callback for 'GetWindow()'
+ CalcFindWindowEnum          @18  NONAME ; enum callback for 'FindWindow()'
+ ScreenLinesDlgProc          @19  NONAME ; callback for 'Screen Lines' dialog
+ InstantBatchDlgProc         @20  NONAME ; callback for 'Instant Batch' dialog
+
+ SubclassEditWindowProc      @21  NONAME ; window callback for 'Edit' subclassing
+ SubclassEditEnumCallback    @22  NONAME ; enum callback for 'Edit' subclassing
+
+ AuthCodeDialog              @23  NONAME ; authorization code dialog box

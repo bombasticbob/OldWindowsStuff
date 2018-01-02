@@ -1,0 +1,114 @@
+#include "windows.h"
+#include "toilet.h"
+
+
+
+TOILET1  ICON TOILET1.ICO
+TOILET1A ICON TOILET1A.ICO
+TOILET2  ICON TOILET2.ICO
+
+DNARROW  BITMAP DNARROW.BMP
+
+TOILETCURSOR CURSOR TOILET.CUR
+
+FlushingSound WAVE TOILET.WAV
+DropSound     WAVE SPLASH.WAV
+
+
+AboutBox DIALOG 60, 30, 200, 192
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU | DS_ABSALIGN
+CAPTION "About Toilet"
+BEGIN
+
+    ICON  "TOILET1",                                   -1,  2,  2, 16, 16
+    ICON  "TOILET1A",                                  -1,182,  2, 16, 16
+
+    CTEXT "'Toilet 1.2' for Microsoft Windows 3.1",    -1, 20,  3,160,  8
+    CTEXT "(c) 1992-1994 by R.E.Frazier - all rights reserved",
+                                                       -1, 20, 12,160,  8
+    CTEXT "*junk*",                         IDM_BRIEFHELP,  2, 22,198, 64
+    CTEXT "This program is now freeware.",             -1,  2, 87,198,  8
+    CTEXT "Big Bad Bombastic Bob",                     -1,  2, 96,198,  8
+    CTEXT "EMAIL: bobf at mrp3.com",                   -1,  2,132,198,  8
+    CTEXT "The executable program (TOILET.EXE) became PUBLIC DOMAIN on January 1, 1996",
+                                                       -1,  2,145,198,  16
+
+    DEFPUSHBUTTON "OK",                              IDOK, 84,166, 32, 14, WS_GROUP
+
+END
+
+
+
+UndeleteDialog DIALOG 80, 30, 188, 152
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | DS_ABSALIGN
+CAPTION "* Un-Delete (Restore) Files *"
+FONT 8, "Helv"
+BEGIN
+
+    LISTBOX                            IDM_LISTBOX,   4,   4, 132, 120, LBS_SORT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP | LBS_NOTIFY
+
+    DEFPUSHBUTTON   "&Restore",        IDM_RESTORE, 144,   8,  40,  14
+    PUSHBUTTON      "Restore &All", IDM_RESTOREALL, 144,  30,  40,  14
+    PUSHBUTTON      "&Purge",            IDM_PURGE, 144,  52,  40,  14
+    PUSHBUTTON      "&Close",             IDCANCEL, 144, 100,  40,  14
+    LTEXT           "Select desired file in listbox - Use 'Restore' option to un-hide file, or 'Purge' to delete it from disk.  Press <Esc> or select 'Close' to exit.", 
+                                                -1,   4, 126, 184,  26
+    ICON            "TOILET1",                  -1, 154,  74,  18,  18
+END
+
+
+
+SetupDialog DIALOG 65, 30, 200, 190
+STYLE WS_POPUP | DS_MODALFRAME | WS_BORDER | WS_VISIBLE | WS_CAPTION | DS_ABSALIGN
+CAPTION "** TOILET 1.2 SETUP **"
+FONT 8, "Helv"
+BEGIN
+
+    LTEXT           "ICON C&APTION:",            -1,   2,   8,  54, 10
+    EDITTEXT                        IDM_ICONCAPTION,  58,   6, 118, 12, ES_AUTOHSCROLL | WS_TABSTOP
+
+    CTEXT           "FILE NAMES {Blank=DEFAULT; 'NUL'=NONE}",
+                                                 -1,   2,  22, 196, 10
+
+    RTEXT           "&OPEN ICON:",               -1,   2,  34,  42, 10
+    EDITTEXT                      IDM_OPENICON_NAME,  46,  32, 121, 12, ES_AUTOHSCROLL | WS_TABSTOP | WS_GROUP
+    CONTROL         "", IDM_OPENICON_NAME2, "Button", BS_OWNERDRAW | WS_TABSTOP,
+                                                     168,  32,  10, 12
+    CONTROL         "", IDM_OPENICON, "Button", BS_OWNERDRAW | WS_DISABLED,
+                                                     180,  26,  20, 30
+    RTEXT           "&FULL ICON:",               -1,   2,  64,  42, 10
+    EDITTEXT                      IDM_FULLICON_NAME,  46,  62, 121, 12, ES_AUTOHSCROLL | WS_TABSTOP | WS_GROUP
+    CONTROL         "", IDM_FULLICON_NAME2, "Button", BS_OWNERDRAW | WS_TABSTOP,
+                                                     168,  62,  10, 12
+    CONTROL         "", IDM_FULLICON, "Button", BS_OWNERDRAW | WS_DISABLED,
+                                                     180,  56,  20, 30
+    RTEXT           "&SHUT ICON:",               -1,   2,  94,  42, 10
+    EDITTEXT                      IDM_SHUTICON_NAME,  46,  92, 121, 12, ES_AUTOHSCROLL | WS_TABSTOP | WS_GROUP
+    CONTROL         "", IDM_SHUTICON_NAME2, "Button", BS_OWNERDRAW | WS_TABSTOP,
+                                                     168,  92,  10, 12
+    CONTROL         "", IDM_SHUTICON, "Button", BS_OWNERDRAW | WS_DISABLED,
+                                                     180,  86,  20, 30
+
+    RTEXT           "'FLUSH' &WAVE:",            -1,   2, 118,  52, 10
+    EDITTEXT                      IDM_WAVEFILE_NAME,  56, 116, 131, 12, ES_AUTOHSCROLL | WS_TABSTOP
+    CONTROL         "", IDM_WAVEFILE_NAME2, "Button", BS_OWNERDRAW | WS_TABSTOP,
+                                                     188, 116,  10, 12
+
+    RTEXT           "'D&ROP' WAVE:",             -1,   2, 131,  52, 10
+    EDITTEXT                      IDM_DROPWAVE_NAME,  56, 129, 131, 12, ES_AUTOHSCROLL | WS_TABSTOP
+    CONTROL         "", IDM_DROPWAVE_NAME2, "Button", BS_OWNERDRAW | WS_TABSTOP,
+                                                     188, 129,  10, 12
+
+
+    CTEXT           "The 'HIDDEN PATH' is the path name to which a deleted file is moved to await 'flushing'",
+                                                 -1,   2, 142, 196, 18
+    RTEXT           "&HIDDEN PATH:",             -1,   2, 162,  52, 10
+    EDITTEXT                    IDM_HIDDENPATH_NAME,  58, 160, 140, 12, ES_AUTOHSCROLL | WS_TABSTOP
+
+
+    PUSHBUTTON      "Sa&ve",                  IDYES,  30, 174,  32, 14, WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "&Default",                IDNO,  84, 174,  32, 14, WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "Cancel",              IDCANCEL, 138, 174,  32, 14, WS_GROUP | WS_TABSTOP
+
+
+END

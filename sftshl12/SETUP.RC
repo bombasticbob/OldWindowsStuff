@@ -1,0 +1,14 @@
+
+#include "windows.h"
+#include "setup.ver"
+
+
+SETUPDLG DIALOG 88, 116, 194, 36
+STYLE DS_ABSALIGN | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "SFTShell Setup Initialization"
+FONT 9, "MS Sans Serif"
+BEGIN
+
+    CTEXT "One moment please...",                    101,   0,   4,  194,  12
+    CTEXT "Initializing the SFTShell Setup Program", 102,   0,  16,  194,  12
+END

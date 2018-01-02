@@ -1,0 +1,19 @@
+[MSVC Status File]
+Version=1.00
+ProjectType=10
+External=1
+DebugBuildCmd=NMAKE /f SFTSHELL.MAK DEBUG=1
+ReleaseBuildCmd=NMAKE /f SFTSHELL.MAK
+RebuildOption=/a
+BuildMode=1
+TargetName=J:\SOURCE\SFTSHL12\SFTSHELL.EXE
+BrkptCount=1
+BrkptType1=0
+BrkptActive1=1
+BrkptAmbig1=0
+BrkptIndex1=-1
+BrkptLoc1={,j:\source\sftshl12\mth.cpp,} .733
+WatchCount=3
+WatchExpr1=_screen
+WatchExpr2=_attrib
+WatchExpr3=_ok_to_use_386_instructions_

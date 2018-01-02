@@ -1,0 +1,96 @@
+#include "windows.h"
+#include "winxray.h"
+
+
+WINXRAYICON ICON WINXRAY.ICO
+
+WAIT0 CURSOR WAIT0.CUR
+WAIT1 CURSOR WAIT1.CUR
+WAIT2 CURSOR WAIT2.CUR
+WAIT3 CURSOR WAIT3.CUR
+
+
+;* added the 'Test' menu option to allow using 'TestFunction()'
+
+MainMenu MENU
+BEGIN
+
+;    POPUP "&System"
+;    BEGIN
+;       MENUITEM "&Math Coprocessor", IDM_x87, CHECKED
+;    END
+
+    MENUITEM "&Tasks",     IDM_TASKS
+    MENUITEM "&Files",     IDM_FILES
+    MENUITEM "&Memory",    IDM_MEMORY
+    MENUITEM "&IDT",       IDM_IDT
+    MENUITEM "&GDT",       IDM_GDT
+    MENUITEM "&LDT",       IDM_LDT
+    MENUITEM "&VM",        IDM_VM
+    MENUITEM "V&xD",       IDM_VXD
+    MENUITEM "&PageMap",   IDM_PAGEMAP
+
+    MENUITEM "T&est",      IDM_TEST
+
+    POPUP        "\a&Help"
+    BEGIN
+
+       MENUITEM "&Contents",  IDM_HELP_CONTENTS
+       MENUITEM "&Files",     IDM_HELP_FILES
+       MENUITEM "&Memory",    IDM_HELP_MEMORY
+       MENUITEM "&IDT",       IDM_HELP_IDT
+       MENUITEM "&GDT",       IDM_HELP_GDT
+       MENUITEM "&LDT",       IDM_HELP_LDT
+       MENUITEM "&VM",        IDM_HELP_VM
+       MENUITEM "V&xD",       IDM_HELP_VXD
+       MENUITEM "&PageMap",   IDM_HELP_PAGEMAP
+
+       MENUITEM SEPARATOR
+
+       MENUITEM "&About",     IDM_ABOUT
+
+    END
+
+    MENUITEM "E&xit",    IDM_EXIT
+
+END
+
+
+AboutBox DIALOG 5, 10, 256, 90
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About WinXRay"
+BEGIN
+    CTEXT "'WinXRay' -  View 'internals' of MS-DOS® and Windows(tm)",
+                                            -1,   0,   5, 256,   8
+    CTEXT "© 1992-94 by Robert E. Frazier - all rights reserved", 
+                                            -1,   0,  14, 256,   8
+    CTEXT "Co-Founder of Stewart-Frazier Tools, Inc., Del Mar, CA",           
+                                            -1,   0,  24, 256,   8
+    LTEXT "This application provides system-level information about MS-DOS® and the Microsoft® Windows(tm) environment, some of which may not be available through any other means.",
+                                            -1,  10,  36, 236,  24
+                                                  
+    CTEXT "This is pre-release 'FREEWARE' - please don't distribute (yet)",
+                                            -1,   0,  64, 256,   8
+
+    DEFPUSHBUTTON "OK",                   IDOK, 112,  74,  32,  14, WS_GROUP
+
+END
+
+
+
+
+USER_INPUT DIALOG 98, 108, 160, 50
+STYLE DS_ABSALIGN | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Get User Input"
+FONT 8, "MS Sans Serif"
+BEGIN
+
+    CTEXT "Please enter appropriate data:",
+                     ID_INPUT_LABEL,   4,   4, 152,  10
+
+    EDITTEXT         ID_INPUT_TEXT,    4,  16, 152,  12, ES_AUTOHSCROLL
+
+    DEFPUSHBUTTON   "OK",     IDOK,   20,  34,  40,  14
+    PUSHBUTTON  "Cancel", IDCANCEL,   98,  34,  40,  14
+
+END

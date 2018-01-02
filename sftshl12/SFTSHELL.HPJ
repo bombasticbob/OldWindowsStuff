@@ -1,0 +1,20 @@
+; This help project requires hc 3.1
+;This is the 'CALCULATION SUPPLEMENT' help file which describes all of the functions and operator syntaxes in detail.
+[OPTIONS]
+errorlog = sftshell.err
+title = SFTSHELL Help File
+contents = CONTENTS
+compress = 1
+warning = 3
+report = 1
+
+[FILES]
+help\sftshel1.rtf
+help\sftshel2.rtf
+help\sftshel3.rtf
+help\sftshel4.rtf
+
+[CONFIG]
+CreateButton("btn_up","&Up","JumpId(`sftshell.hlp',`up_runtime')")
+BrowseButtons()
+

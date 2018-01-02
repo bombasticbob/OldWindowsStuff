@@ -1,0 +1,1014 @@
+/***************************************************************************/
+/*                                                                         */
+/*   WINCMD.RC - Command line interpreter for Microsoft(r) Windows (tm)    */
+/*                                                                         */
+/*         (c) 1991-93 by R. E. Frazier  -  all rights reserved            */
+/*                                                                         */
+/***************************************************************************/
+
+#include "windows.h"
+#include "resource.h"
+#include "sftshell.ver"
+
+SFTSHELLICON ICON LOADONCALL MOVEABLE DISCARDABLE RES\WINCMD.ICO
+
+CARET1    BITMAP LOADONCALL MOVEABLE DISCARDABLE RES\CARET1.BMP
+CARET2    BITMAP LOADONCALL MOVEABLE DISCARDABLE RES\CARET2.BMP
+
+TOOLBAR   BITMAP LOADONCALL MOVEABLE DISCARDABLE RES\TOOLBAR.BMP
+
+SPIN_UP   BITMAP LOADONCALL MOVEABLE DISCARDABLE RES\SPIN_UP.BMP
+SPIN_DOWN BITMAP LOADONCALL MOVEABLE DISCARDABLE RES\SPIN_DWN.BMP
+
+BitmapDriveCD    BITMAP LOADONCALL MOVEABLE RES\DriveCD.BMP
+BitmapDriveFL3   BITMAP LOADONCALL MOVEABLE RES\DriveFL3.BMP
+BitmapDriveFL5   BITMAP LOADONCALL MOVEABLE RES\DriveFL5.BMP
+BitmapDriveHD    BITMAP LOADONCALL MOVEABLE RES\DriveHD.BMP
+BitmapDriveNET   BITMAP LOADONCALL MOVEABLE RES\DriveNET.BMP
+BitmapDriveRAM   BITMAP LOADONCALL MOVEABLE RES\DriveRAM.BMP
+BitmapDriveSUB   BITMAP LOADONCALL MOVEABLE RES\DriveSUB.BMP
+BitmapDriveNONE  BITMAP LOADONCALL MOVEABLE RES\DriveNON.BMP
+
+BitmapOpenFolder BITMAP LOADONCALL MOVEABLE RES\FLDROPEN.BMP
+BitmapGrayFolder BITMAP LOADONCALL MOVEABLE RES\FLDRGRAY.BMP
+BitmapShutFolder BITMAP LOADONCALL MOVEABLE RES\FLDRSHUT.BMP
+
+
+SFTSHELL_FONT FONTFILE LOADONCALL MOVEABLE DISCARDABLE SFTSHFON.FON
+;;SFTSH32X_EXE  EXEFILE  LOADONCALL MOVEABLE DISCARDABLE RES\SFTSH32X.EXE
+
+
+BOOT_SECTOR BOOTSECTOR LOADONCALL MOVEABLE DISCARDABLE RES\BOOTSYS.BIN
+
+
+MAINACCEL ACCELERATORS
+BEGIN
+
+   VK_F3,       IDM_CMDLINE,                VIRTKEY
+   VK_F3,       IDM_EDIT_CMDLINE,  ALT,     VIRTKEY
+   VK_F3,       IDM_COPY_CMDLINE,  CONTROL, VIRTKEY
+;  VK_INSERT,   IDM_PASTE_MENU,    SHIFT,   VIRTKEY
+;  VK_INSERT,   IDM_COPY_MENU,     CONTROL, VIRTKEY
+   VK_HELP,     IDM_HELP_COMMAND,           VIRTKEY
+   VK_F1,       IDM_HELP_COMMAND,           VIRTKEY
+   VK_INSERT,   IDM_COPY_ALL,      SHIFT,   CONTROL,     VIRTKEY
+   VK_PRIOR,    IDM_PAGE_UP,                VIRTKEY
+   VK_NEXT,     IDM_PAGE_DOWN,              VIRTKEY
+   VK_UP,       IDM_UP,                     VIRTKEY
+   VK_DOWN,     IDM_DOWN,                   VIRTKEY
+   VK_RIGHT,    IDM_RIGHT,                  VIRTKEY
+   VK_LEFT,     IDM_LEFT,                   VIRTKEY
+   VK_INSERT,   IDM_INSERT,                 VIRTKEY
+   VK_DELETE,   IDM_DELETE,                 VIRTKEY
+   VK_HOME,     IDM_HOME,                   VIRTKEY
+   VK_END,      IDM_END,                    VIRTKEY
+
+   VK_RIGHT,    IDM_CTRL_RIGHT,    CONTROL, VIRTKEY
+   VK_LEFT,     IDM_CTRL_LEFT,     CONTROL, VIRTKEY
+   VK_UP,       IDM_CTRL_UP,       CONTROL, VIRTKEY
+   VK_DOWN,     IDM_CTRL_DOWN,     CONTROL, VIRTKEY
+
+   VK_HOME,     IDM_CTRL_HOME,     CONTROL, VIRTKEY
+   VK_END,      IDM_CTRL_END,      CONTROL, VIRTKEY
+
+   VK_PRIOR,    IDM_CTRL_LEFT,     CONTROL, VIRTKEY ; ctrl-PgUp
+   VK_NEXT,     IDM_CTRL_RIGHT,    CONTROL, VIRTKEY ; ctrl-PgDn
+
+   VK_CANCEL,   IDM_CBRK,                   VIRTKEY
+   VK_CANCEL,   IDM_CBRK,          CONTROL, VIRTKEY
+
+
+END
+
+
+MainMenu MENU
+BEGIN
+
+    POPUP        "&File"
+    BEGIN
+        MENUITEM "&Open",             IDM_OPEN_MENU
+        MENUITEM "&Print",            IDM_PRINT_MENU
+        MENUITEM "&Folder",           IDM_FOLDER_MENU
+        MENUITEM SEPARATOR
+        MENUITEM "&Associate",        IDM_ASSOCIATE_MENU
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt-F4",     IDM_EXIT
+    END
+
+    POPUP        "&Edit"
+    BEGIN
+;        MENUITEM "&Copy\tCtl-Ins",          IDM_COPY_MENU,   GRAYED
+        MENUITEM "Copy &All\tCtl-Shft-Ins", IDM_COPY_ALL
+        MENUITEM "Copy Cmd &Hist\tCtl-F3",  IDM_COPY_CMDLINE
+        MENUITEM "&Paste\tShift-Ins",       IDM_PASTE_MENU,  GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "Cmd &Line Hist\tAlt-F3",  IDM_EDIT_CMDLINE
+        MENUITEM "&Erase Cmd Hist",         IDM_ERASEHISTORY
+        MENUITEM SEPARATOR
+        MENUITEM "Instant &Batch Program",  IDM_INSTANT_BATCH
+    END
+
+    POPUP        "&View"
+    BEGIN
+        MENUITEM "&Tool Bar",               IDM_TOOL_BAR
+        MENUITEM "&Status Bar",             IDM_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Screen &Lines",           IDM_SCREEN_LINES
+        MENUITEM SEPARATOR
+        MENUITEM "Show Status &Dialog",     IDM_STATUS
+    END
+
+    POPUP        "F&ont"
+    BEGIN
+        MENUITEM "&Default",                IDM_FONT_NORMAL
+        MENUITEM "&Teeny (5x7)",            IDM_FONT7x5
+        MENUITEM "T&iny (6x8)",             IDM_FONT8x6
+        MENUITEM "&Small (7x9)",            IDM_FONT9x7
+        MENUITEM "&Medium (8x12)",          IDM_FONT12x8
+        MENUITEM "&Large (12x16)",          IDM_FONT16x12
+        MENUITEM "&Huge (18x24)",           IDM_FONT24x18
+        MENUITEM "&Gigantic (24x32)",       IDM_FONT32x24
+        MENUITEM "M&onolithic (36x48)",     IDM_FONT48x36
+        MENUITEM SEPARATOR
+        MENUITEM "&Custom Font Setting",    IDM_FONT_MENU
+    END
+
+    MENUITEM "&Queue",                      IDM_QUEUE_MENU
+
+    POPUP        "\a&Help"
+    BEGIN
+        MENUITEM "&About SFTShell...",       IDM_ABOUT
+        MENUITEM "&Command\tAlt-F1",         IDM_HELP_COMMAND
+        MENUITEM "&Keys",                    IDM_HELP_KEYS
+        MENUITEM "&Variables",               IDM_HELP_VARIABLES
+        MENUITEM "A&NSI Sequences",          IDM_HELP_ANSI
+        MENUITEM SEPARATOR
+        MENUITEM "&SFTShell Help Contents",  IDM_HELP_CALCULATION
+    END
+
+END
+
+
+
+AUTHCODE_DIALOG DIALOG 6, 18, 160, 48
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "SFTShell DEMO - Authorization Code Entry"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "Please enter authorization code below:",
+                                    -1,   8,  2, 144,  8, WS_GROUP
+    EDITTEXT                       101,  10, 14, 140, 12, ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",         IDOK,  18, 30,  40, 14, WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "Cancel", IDCANCEL, 100, 30,  40, 14, WS_GROUP | WS_TABSTOP
+END
+
+
+
+AboutBox DIALOG LOADONCALL MOVEABLE DISCARDABLE 22, 17, 144, 100
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "* About SFTShell *"
+BEGIN
+    ICON  "SFTSHELLICON"                         -1,   5,   5,  16,  16
+    CTEXT "Command Line Interpreter"             -1,  22,   5, 100,   8
+    CTEXT "For Microsoft® Windows(tm) 3.x"       -1,  22,  14, 100,   8
+    CTEXT VER_LEGALCOPYRIGHT_STR3                -1,   2,  23, 140,   8
+    DEFPUSHBUTTON "OK"                         IDOK,  53,  85,  32,  14, WS_GROUP
+END
+
+
+CMDHISTORY DIALOG LOADONCALL MOVEABLE DISCARDABLE 6, 18, 254, 141
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "Command History and Editing"
+;FONT 8, "Helv"
+BEGIN
+    LISTBOX         IDM_CMD_LIST, 2, 2, 250, 98, WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDM_CMD_EDIT, 2, 110, 250, 12, ES_AUTOHSCROLL
+    CTEXT           "* Command Line Edit *", 101, 2, 101, 250, 8
+    DEFPUSHBUTTON   "OK", IDOK, 2, 125, 43, 14
+    PUSHBUTTON      "Cancel", IDCANCEL, 50, 125, 40, 14
+    PUSHBUTTON      "O&riginal", IDM_CMD_ORIGINAL, 212, 125, 40, 14
+    PUSHBUTTON      "&Selected", IDM_CMD_SELECTED, 167, 125, 40, 14
+END
+
+
+
+FOLDER DIALOG LOADONCALL MOVEABLE DISCARDABLE 64, 20, 160, 154
+STYLE DS_MODALFRAME | DS_ABSALIGN | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "SFTShell Change Drive/Directory"
+FONT 8, "MS Sans Serif"
+BEGIN
+
+    EDITTEXT                 IDC_PATH,       4,   4, 152, 12, ES_AUTOHSCROLL
+    LISTBOX                  IDC_DIRLIST,    4,  20, 152, 92, LBS_OWNERDRAWFIXED | LBS_SORT | LBS_HASSTRINGS | LBS_NOTIFY | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX                 IDC_DRIVELIST,  4, 114, 152, 66, CBS_DROPDOWNLIST | CBS_SORT | CBS_HASSTRINGS | CBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
+
+    DEFPUSHBUTTON  "OK",         IDOK,      28, 132,  42, 16
+    PUSHBUTTON     "Cancel", IDCANCEL,      92, 132,  42, 16
+
+END
+
+
+
+SCREEN_LINES DIALOG 78, 32, 106, 52
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "* SFTShell Screen Lines *"
+FONT 8, "MS Sans Serif"
+BEGIN
+
+    CTEXT  "Adjust size of screen buffer", -1,  0,  2,106, 8
+
+    CONTROL       "",                      -1, "Static", SS_BLACKFRAME,
+                                                8, 16, 80, 16
+    EDITTEXT                        IDC_LINES, 10, 18, 76, 12, ES_AUTOHSCROLL | NOT WS_BORDER
+    CONTROL       "SPIN_UP",      IDC_SPIN_UP, "Button", BS_OWNERDRAW | WS_TABSTOP,
+                                               88, 16, 10, 8
+    CONTROL       "SPIN_DOWN",  IDC_SPIN_DOWN, "Button", BS_OWNERDRAW | WS_TABSTOP,
+                                               88, 24, 10, 8
+
+    DEFPUSHBUTTON "OK",                  IDOK,  8, 36, 40, 14
+    PUSHBUTTON    "Cancel",          IDCANCEL, 58, 36, 40, 14
+
+END
+
+
+
+
+QUEUE DIALOG LOADONCALL MOVEABLE DISCARDABLE 10, 22, 274, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "* SFTShell QUEUE Status *"
+FONT 8, "MS Sans Serif"
+BEGIN
+
+    GROUPBOX      "&Format Queue",  -1,   2,   0, 270,  62, WS_GROUP
+
+    LISTBOX           IDC_FORMAT_QUEUE,   6,  14, 198,  44, WS_VSCROLL | WS_TABSTOP
+
+    PUSHBUTTON    "&Suspend Format",
+                    IDC_SUSPEND_FORMAT, 210,   6,  58,  16
+
+    PUSHBUTTON    "&Resume Format",
+                     IDC_RESUME_FORMAT, 210,  24,  58,  16
+
+    PUSHBUTTON    "Re&move Item",
+                     IDC_REMOVE_FORMAT, 210,  42,  58,  16
+
+
+    GROUPBOX      "&Copy Queue",    -1,   2,  62, 270,  98, WS_GROUP
+
+    LISTBOX             IDC_COPY_QUEUE,   6,  74, 198,  82, WS_VSCROLL | WS_TABSTOP
+
+    PUSHBUTTON    "S&uspend Copy",
+                      IDC_SUSPEND_COPY, 210,  74,  58,  16
+
+    PUSHBUTTON    "R&esume Copy",
+                       IDC_RESUME_COPY, 210,  92,  58,  16
+
+    PUSHBUTTON    "Remo&ve Item",
+                       IDC_REMOVE_COPY, 210, 110,  58,  16
+
+
+    DEFPUSHBUTTON "Close",    IDCANCEL, 210, 138,  58,  16, WS_GROUP
+
+END
+
+
+
+INSTANT_BATCH DIALOG 78, 42, 228, 174
+STYLE DS_MODALFRAME | DS_ABSALIGN | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "SFTShell - Instant Batch Program"
+FONT 8, "MS Sans Serif"
+BEGIN
+
+    EDITTEXT       IDC_BATCH_TEXT,   2,   2, 224, 150,
+                                   ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+
+    PUSHBUTTON "&OK",       IDYES,  44, 158,  40,  14
+    PUSHBUTTON "Cancel", IDCANCEL, 146, 158,  40,  14
+END
+
+
+
+
+ASSOCIATE DIALOG 32, 14, 260, 126
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Associate File Extension"
+FONT 8, "MS Sans Serif"
+BEGIN
+
+    LTEXT         "&Files with Extension:",  101,   6,   8,  72,   8, WS_GROUP
+    EDITTEXT                       IDC_EXTENSION,  80,   6,  36,  12, ES_AUTOHSCROLL
+
+    EDITTEXT                       IDC_ASSOCIATE,   6,  32, 226,  12, WS_GROUP | ES_AUTOHSCROLL
+    LTEXT         "&Associate With:",        104,   6,  22, 166,   8
+    LISTBOX                          IDC_APPLIST,  12,  44, 240,  58, WS_VSCROLL | WS_TABSTOP | LBS_SORT | LBS_USETABSTOPS
+
+    DEFPUSHBUTTON "OK",                     IDOK,  45, 106,  40,  14, WS_GROUP
+    PUSHBUTTON    "Cancel",             IDCANCEL, 110, 106,  40,  14, WS_GROUP
+    PUSHBUTTON    "&Browse",          IDC_BROWSE, 175, 106,  40,  14, WS_GROUP
+END
+
+
+;OLD_ASSOCIATE DIALOG LOADONCALL MOVEABLE DISCARDABLE 32, 14, 210, 94
+;STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+;CAPTION "Associate File Extension"
+;FONT 8, "MS Sans Serif"
+;BEGIN
+;
+;    LTEXT           "&Files with Extension:", 101,   6,   8,  72,   8
+;    EDITTEXT                        IDC_EXTENSION,  80,   6,  36,  12, ES_AUTOHSCROLL
+;    EDITTEXT                        IDC_ASSOCIATE,   6,  32, 146,  12, ES_AUTOHSCROLL
+;    LTEXT           "&Associate With:",       104,   6,  22, 146,   8
+;    LISTBOX                           IDC_APPLIST,  12,  44, 146,  40, WS_VSCROLL | WS_TABSTOP | LBS_USETABSTOPS
+;    DEFPUSHBUTTON   "OK",                    IDOK, 166,   6,  38,  14
+;    PUSHBUTTON      "Cancel",            IDCANCEL, 166,  24,  38,  14
+;    PUSHBUTTON      "&Browse",         IDC_BROWSE, 166,  42,  38,  14
+;    PUSHBUTTON      "&Help",             IDC_HELP, 166,  60,  38,  14
+;
+;END
+
+
+EXTERROR DIALOG LOADONCALL MOVEABLE DISCARDABLE 6, 18, 256, 100
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CLIPSIBLINGS |
+    WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "* Error Report *"
+BEGIN
+    CTEXT           "", IDM_EXTERR,  2, 2,  251, 70
+    DEFPUSHBUTTON   "Retry", IDRETRY, 65, 78, 40, 16, WS_GROUP
+    PUSHBUTTON      "Cancel", IDCANCEL, 151, 78, 40, 16, WS_GROUP
+END
+
+
+
+
+
+STRINGTABLE LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+
+;
+;*** These items are 'extended error code' definitions ***
+;
+
+   1, "?Function number invalid"
+   2, "?File not found"
+   3, "?Path not found"
+   4, "?Too many open files"
+   5, "?Access denied"
+   6, "?Handle invalid"
+   7, "?Memory control blocks destroyed"
+   8, "?Insufficient memory"
+   9, "?Memory block address invalid"
+  10, "?Environment invalid"
+  11, "?Format invalid"
+  12, "?Access code invalid"
+  13, "?Data invalid"
+  14, "?Unknown unit/Out of Memory"
+  15, "?Disk drive invalid"
+  16, "?Attempted to remove current directory"
+  17, "?Not same device"
+  18, "?No more files"
+  19, "?Disk write-protected"
+  20, "?Unknown unit"
+  21, "?Drive not ready"
+  22, "?Unknown command"
+  23, "?Data error (CRC check failed)"
+  24, "?Bad request structure length"
+  25, "?Seek error"
+  26, "?Unknown media type"
+  27, "?Sector not found"
+  28, "?Printer out of paper"
+  29, "?Write fault"
+  30, "?Read fault"
+  31, "?General failure"
+  32, "?Sharing violation"
+  33, "?Lock violation"
+  34, "?Disk change invalid"
+  35, "?FCB unavailable"
+  36, "?Sharing buffer exceeded"
+  37, "?Reserved (37)"
+  38, "Handle - End Of File"
+  39, "Handle - Disk Full"
+  40, "?Reserved (40)"
+  41, "?Reserved (41)"
+  42, "?Reserved (42)"
+  43, "?Reserved (43)"
+  44, "?Reserved (44)"
+  45, "?Reserved (45)"
+  46, "?Reserved (46)"
+  47, "?Reserved (47)"
+  48, "?Reserved (48)"
+  49, "?Reserved (49)"
+  50, "?Unsupported network request"
+  51, "?Remote machine not listening"
+  52, "?Duplicate name on network"
+  53, "?Network name not found"
+  54, "?Network busy"
+  55, "?Device no longer exists on network"
+  56, "?NetBIOS command limit exceeded"
+  57, "?Error in network adapter hardware"
+  58, "?Incorrect response from network"
+  59, "?Unexpected network error"
+  60, "?Remote adapter incompatible"
+  61, "?Print queue full"
+  62, "?Not enough space for print file"
+  63, "?Print file canceled"
+  64, "?Network name deleted"
+  65, "?Network access denied"
+  66, "?Incorrect network device type"
+  67, "?Network name not found"
+  68, "?Network name limit exceeded"
+  69, "?NetBIOS session limit exceeded"
+  70, "?File sharing temporarily paused"
+  71, "?Network request not accepted"
+  72, "?Print or disk redirection paused"
+  73, "?Reserved (73)"
+  74, "?Reserved (74)"
+  75, "?Reserved (75)"
+  76, "?Reserved (76)"
+  77, "?Reserved (77)"
+  78, "?Reserved (78)"
+  79, "?Reserved (79)"
+  80, "?File already exists"
+  81, "?Reserved (81)"
+  82, "?Cannot make directory"
+  83, "?Fail on Int 24H (critical error)"
+  84, "?Too many redirections"
+  85, "?Duplicate redirection"
+  86, "?Invalid password"
+  87, "?Invalid parameter"
+  88, "?Network device full/write fault"
+  89, "?Function not supported by network"
+  90, "?Required system component not installed"
+
+
+;
+;*** These items are 'extended error class' definitions ***
+;
+
+ 256, "Unknown error class (0)"
+ 257, "Out of resource"
+ 258, "Situation is temporary"
+ 259, "Specified action is not authorized."
+ 260, "* Internal Software Error *"
+ 261, "* HARDWARE MALFUNCTION *"
+ 262, "* System Software problem (external) *"
+ 263, "Application Program Error!"
+ 264, "File or item not found"
+ 265, "File or item not correct type/format"
+ 266, "File or item is LOCKED!"
+ 267, "Wrong disk in drive or media error"
+ 268, "Item already exists!!"
+ 269, "Unknown error class (13)"
+ 270, "WIN32 Informational only"
+ 271, "WIN32 Warning"
+
+;
+;*** These items are 'extended error recommended action' definitions ***
+;
+
+ 320, "Undefined recommended action (0)"
+ 321, "This action may be retried immediately"
+ 322, "This action may be retried after a reasonable delay"
+ 323, "Any invalid parameters should be corrected before retrying"
+ 324, "*** SERIOUS ERROR CONDITION ***  Application should be terminated!"
+ 325, "*** FATAL ERROR CONDITION ***  Abort application immediately!"
+ 326, "(This condition may be ignored...)"
+ 327, "Attempt to remove the cause of the error, then retry"
+ 328, "Undefined recommended action (8)"
+
+;
+;*** These items are 'extended error locus' definitions ***
+;
+
+ 384, "Unknown device type (0)"
+ 385, "Device type is either unknown or non-specific"
+ 386, "This error occurred within a block device, such as a disk drive."
+ 387, "This error occurred on a network device."
+ 388, "This error occurred on a serial device, such as a modem or printer."
+ 389, "The system may be running out of available memory!"
+ 390, "Unknown device type (6)"
+ 391, "This error occurred within WINDOWS"
+ 392, "This error occurred within WIN32"
+ 393, "This error occurred within RPC"
+ 394, "This error occurred within CONTROL"
+ 395, "This error occurred within ITF"
+ 396, "This error occurred within DISPATCH"
+
+
+
+;
+;*** These items that follow are 'internal' error message definitions ***
+;*** for error messages invoked by the 'PrintErrorMessage()' function ***
+;*** as well as general purpose message strings (>8k of TEXT!!  GAG!) ***
+
+
+ 496, "?Internal error - command table corrupt!\r\n\n"
+ 497, "\r\n\n\nJust WHAT do you think you're doing, looking through this file??\r\n"
+ 498, "Naughty, naughty - reverse engineering is NOT allowed - gotcha!\r\n"
+ 499, "We keep our prices low enough to make it worth your while to buy it.\r\n"
+ 500, "Be honest - 'Piracy' hurts the entire software industry!\r\n"
+ 501, "There's no point in looking any further...\r\nall of the good stuff has gone by already!\r\n"
+ 502, "I'd rather have a bottle in front of me than a frontal lobotomy!\r\n"
+ 503, "Why is this stuff here?  COPYRIGHT PROTECTION!\r\n"
+ 504, "This program is Copyright \251 1991-1997 by Stewart~Frazier Tools, Inc. - all rights reserved\r\n"
+ 505, "Unauthorized duplication is a violation of federal law in the\r\nUnited States of America (the best country in the world)!\r\n"
+ 506, "And, U.S. copyright laws are respected throughout the world.\r\n"
+ 507, "So, remember to only use a REGISTERED copy!\r\n"
+ 508, "These 'secret' messages have been placed here by the author, R. E. Frazier\r\n"
+ 509, "If you happen to see the messages, send us a 'QSL' card!\r\n"
+ 510, "Special thanks to my daughter Hillary,\r\nand to GOD, without whom the world would not exist in the first place.  As for my X-wife, she can burn in hell!\r\n"
+ 511, "***************************************************************************\r\n"
+
+
+ 512, "Unknown (internal) error\r\n"
+ 513, "\r\n* 'WAIT' aborted at your request *\r\n\n"
+ 514, "*COMPLETE*\r\n\n"
+ 515, "?Invalid destination path\r\n\n"
+ 516, "?Not enough memory to add format request to QUEUE!\r\n\n"
+ 517, "!!!\r\n\n*** BACKGROUND COPY INPUT FROM 'CON'! ***\r\n*** Begin input now.  End with Ctrl-Z ***\r\n\n"
+ 518, "!!!\r\n\n*** BACKGROUND COPY TO 'CON' DEVICE! ***\r\n"
+ 519, "\r\n** Terminated by <CTRL-Break> **\r\n\n"
+ 520, "You cannot run \042"
+ 521, "\042 while under Windows(tm)!\r\nDoing so could potentially corrupt the system.\r\n\n"
+ 522, "?Bad command, file name, or path\r\n\n"
+ 523, "I'm sorry, but the function \042"
+ 524, "\042 is not (yet) supported...\r\n\n"
+ 525, "Updating "
+ 526, " -- "
+ 527, "  ** OK **\r\n"
+
+
+ 528, "?Incorrect windows version on EXE file\r\n\n"
+ 529, "?Cannot load an 'un-MARK'ed application in Standard or Enhanced mode\r\nThis program was written for a previous version of Windows and must be\r\nupdated before it can run in Standard or Enhanced mode.\r\n"
+ 530, "?Unable to load program to be run...\r\n\n"
+ 531, "?Can't load more than one instance of this program...\r\n\n"
+ 532, "?System configuration disallows running this program at this time.\r\n\n"
+ 533, "?Internal Memory allocation error!\r\n\n"
+ 534, "?Illegal switch - \042"
+ 535, "\042!  Command rejected.\r\n\n"
+ 536, "?Invalid number of parameters!\r\n\n"
+ 537, "  ** ERROR **\r\n"
+ 538, "** MULTIPLE Tasks have this module name **\r\nEntry  Task Handle  Window Caption\r\n-----  -----------  --------------\r\n"
+ 539, " ** N/A **\r\n"
+ 540, "Which Task to Close (1,2,3,etc.) or <Return> to cancel? "
+ 541, "** CANCELLED **\r\n\n"
+ 542, "?Invalid Sequence # - \042"
+ 543, "\042.\r\n\n"
+
+
+ 544, "?I am sorry, but '/S' is not (currently) supported...\r\n\n"
+ 545, "?Command SYNTAX error - \042"
+ 546, "?Unknown attribute flag - \042"
+ 547, "\042 ignored...\r\n\n"
+ 548, "?No files found matching criteria\r\n\n"
+ 549, "?Error in formula\r\n\n"
+ 550, "?Cannot obtain TASK LIST for module name comparison\r\n"
+ 551, "?Invalid task ID or Module Name - \042"
+ 552, "?No top level windows found for this task - try 'KILLTASK'\r\n\n"
+ 553, "'Close' messages sent to all windows for this task\r\n\n"
+ 554, "'Close' message sent to specified window.\r\n\n"
+ 555, "?'/V' must appear at the end of the command line.\r\n\n"
+ 556, "?Cannot have multiple input files with Wildcards ('*' or '?') in file names\r\n\n"
+ 557, "?Illegal date specified - \042"
+ 558, "?DOS will not allow date change to \042"
+ 559, "NEW DATE (<ENTER> to keep original):  "
+
+
+ 560, "?Cannot use DDE - 'DDEML' DLL could not be initialized\r\n\n"
+ 561, "?Missing EXECUTE command string!\r\n\n"
+ 562, "?Missing 'item' identifier\r\n\n"
+ 563, "?Extraneous argument ignored - \042"
+ 564, "?Internal error - fatal\r\n\n"
+ 565, "?Fatal DDE Error - transaction not processed\r\n\n"
+ 566, "?Server application no longer exists\r\n\n"
+ 567, "DDE Parameter Invalid\r\n\n"
+ 568, "DDE Transaction Not Processed (NAK)\r\n\n"
+ 569, "?Unspecified DDE (FATAL) Error\r\n\n"
+ 570, "?Server|topic is already registered\r\n\n"
+ 571, "?No conversation established for \042"
+ 572, "!Operation aborted by user request.\r\n\n"
+ 573, "!Warning - '/4' not supported\r\n"
+ 574, "!Warning - '/-4' not supported\r\n"
+ 575, "Unexpected error DIR01 - aborting\r\n\n"
+
+
+ 576, "?Error getting directory tree\r\n\n"
+ 577, "?Error obtaining directory listing\r\n\n"
+ 578, "?Not valid in COMMAND mode\r\n\n"
+ 579, "?Cannot use non-default drive/path with 'NOT' option\r\n\n"
+ 580, "Files specified with 'NOT' option do not exclude anything!\r\nPerform operation using \042*.*\042 (N/Y)? "
+ 581, "?Error obtaining file list for\042"
+ 582, "?Unexpected error while evaluating string\r\n\n"
+ 583, "An error occurred while processing the command\r\nDo you wish to continue with the remaining files (N/Y)? "
+ 584, "\r\n?Cancelled via Ctrl-Break\r\n\n"
+ 585, "?Invalid drive specification\r\n\n"
+ 586, "?Cannot format NETWORK drive.\r\n\n"
+ 587, "?Drive is not 'removable' - use FORMAT.EXE instead\r\n\n"
+ 588, "?Unable to format the specified drive.  This drive is either\r\nnot in use, or has been created using SUBST/JOIN and therefore\r\ncannot be formatted using this command.\r\n\n"
+ 589, "?Unable to obtain drive type from BIOS\r\n\n"
+ 590, "?Cannot specify '/F' with '/N' or '/T'\r\n\n"
+ 591, "?Invalid format size specified - \042"
+
+
+ 592, "!Warning - '/"
+ 593, "' not supported (archaic format)\r\n(Use the MS-DOS 'FORMAT' program by typing 'FORMAT.EXE'\r\nin place of 'FORMAT' on the command line)\r\n\n"
+ 594, "?Illegal format for specified drive\r\n\n"
+ 595, "\r\nOperation CANCELLED via Ctrl-Break\r\n\n"
+ 596, "?Not valid in immediate mode!\r\n\n"
+ 597, "?Error in batch (internal) - terminating!\r\n\n"
+ 598, "?Batch file label \042"
+ 599, "\042 not found - terminating!\r\n\n"
+ 600, "?'HELP' topic not found - \042"
+ 601, "?Must have arguments to 'IF' statement\r\n\n"
+ 602, "!Warning - 'ERRORLEVEL' not valid under Windows(tm)\r\n   (condition assumed to be FALSE)\r\n\n"
+ 603, "?Syntax error in 'IF' statement...\r\n"
+ 604, "\r\n?Invalid number of arguments - 'INPUT'\r\n\n"
+ 605, "?Unable to obtain required DOS information (List of Lists)\r\n\n"
+ 606, "?No 'JOIN'ed drives present\r\n\n"
+ 607, "?Cannot obtain TASK LIST for module name comparison\r\n"
+
+
+ 608, "Which Task to KILL (1,2,3,etc.) or <Return> to cancel? "
+ 609, "?Invalid Sequence # - \042"
+ 610, "?Invalid task ID or Module Name - \042"
+ 611, "?Cannot assign label to NETWORK drive\r\n\n"
+ 612, "New Label (<ENTER> for none, Ctrl-Break to cancel)? "
+ 613, "?Error while attempting to delete old volume label\r\n\n"
+ 614, "?Could not create volume label \042"
+ 615, "?Syntax error in array subscipted variable\r\n\n"
+ 616, "?Syntax error - missing '='\r\n\n"
+ 617, "?Error evaluating equation - variable not changed\r\n\n"
+ 618, "?DPMI Failure - cannot complete operation\r\n\n"
+ 619, "?Extraneous parameters ignored\r\n"
+ 620, "?DPMI Failure - cannot complete operation\r\n\n"
+ 621, "?Program name missing\r\n\n"
+ 622, "?Fatal error occurred in 'MemManInfo()'\r\n\n"
+ 623, "?Command line Syntax Error\r\n\n"
+
+
+ 624, "?Cannot use \042"
+ 625, "\042... 'TOOLHELP.DLL' not present!\r\n\n"
+ 626, "?Error while calling GlobalFirst()\r\n\n"
+ 627, "?Switch \042/"
+ 628, "\042 not (yet) supported...\r\n\n"
+ 629, "?Source path not valid\r\n\n"
+ 630, "?Destination path not valid\r\n\n"
+ 631, "?New path must specify same (canonical) drive as source\r\n\n"
+ 632, "?New path must not specify a different drive\r\n\n"
+ 633, "?Illegal file name(s) specified in MOVE\r\n\n"
+ 634, " ** ?Error in 'UpdateFileName()'\r\n\n"
+ 635, "  ?Process aborted\r\n\n"
+ 636, "?Unable to play Multi-Media sound file...\r\n'MMSYSTEM.DLL' not present!\r\n\n"
+ 637, "?Illegal number of arguments - \042"
+ 638, "?Cannot locate Sound file \042"
+ 639, "?This option requires SHELL.DLL to be installed\r\n\n"
+
+
+ 640, "?No association exists for printing this file\r\n\n"
+ 641, "?Error attempting to PRINT file\r\n\n"
+ 642, "?Module \042"
+ 643, "\042 is not valid.\r\n\n"
+ 644, "?Cannot obtain TASK LIST for module name comparison\r\n"
+ 645, "?Cannot unload module - it belongs to a task!\r\n\n"
+ 646, "?New name must not have directory or drive specified\r\n\n"
+ 647, "?Unable to assign value!\r\n\n"
+ 648, "?Internal Batch Processing Error in 'SHIFT' - TERMINATING!\r\n\n"
+ 649, "?Syntax error - either 0 or 2 arguments required\r\n\n"
+ 650, "?Drive \042"
+ 651, ":\042 is not currently defined\r\n\n"
+ 652, ":\042 is not a 'SUBST'ed drive\r\n\n"
+ 653, "?Unable to obtain task list to delete 'SUBST'ed drive!\r\n\n"
+ 654, "?'SUBST'ed drive \042"
+ 655, "\042 is in use!\r\n\n"
+
+
+ 656, "\042 deleted.\r\n\n"
+ 657, "?Unable to obtain task list to inform File Manager of drive change\r\n\n"
+ 658, "\042 is already in use!\r\n\n"
+ 659, "?Not enough resources to obtain drive information\r\n\n"
+ 660, "?No 'SUBST'ed drives present\r\n\n"
+ 661, "?Too many arguments in command line\r\n\n"
+ 662, "?Illegal COMSPEC value - system not transferred\r\n\n"
+ 663, "?Missing COMSPEC value - system not transferred\r\n\n"
+ 664, "?Unexpected error while attempting to transfer system\r\n\n"
+ 665, "?Required DLL not loaded for TASKLIST...\r\n\n"
+ 666, "(Error Message #666) - '666' by the way is the number of MAN (and 'the beast'), and *NOT* the devil - do a study of the Bible, book of 'Revelation' before getting superstious!\r\n\n"
+ 667, "?Unable to obtain task list...\r\n\n"
+ 668, "?Illegal time specified - \042"
+ 669, "?DOS will not allow time change to \042"
+ 670, "NEW TIME (<ENTER> to keep original):  "
+ 671, "?Warning - No switches currently supported for 'TREE'\r\n\n"
+
+
+ 672, "\r\nYou CANNOT 'TYPE' the 'CON' device!!\r\n\n"
+ 673, "?Syntax error - too many arguments\r\n\n"
+ 674, "\r\n?Syntax error - 'WAIT' command\r\nExpected 'FOR|UNTIL [date] time', found \042"
+ 675, "\r\n?Invalid argument in 'WAIT' - \042"
+ 676, "\r\n?Must have time/date argument for 'WAIT' command\r\n\n"
+ 677, "\r\n?Only one parameter allowed for 'WAIT FOR'\r\n\n"
+ 678, "\r\n?Illegal date value - \042"
+ 679, "\r\n?Illegal time value - \042"
+ 680, "\r\n?Illegal date/time value - \042"
+ 681, "?'NULL' wait period - WAIT cancelled\r\n\n"
+ 682, "?Cannot specify such a *large* wait period!\r\nUse the 'WAIT UNTIL' option instead and specify the date\r\n\n"
+ 683, "Does \042"
+ 684, "\042 specify a file name\r\nor directory name on the target (F=file, D=directory)?"
+ 685, "?Illegal response - \042"
+ 686, "Press any key to begin adding files to COPY QUEUE:"
+ 687, "?Error while adding files to COPY QUEUE\r\n\n"
+
+
+ ;*** ERROR MESSAGES ADDED AS PART OF 'DBLSPACE' MOD and "AGGRESSIVE ***
+ ;*** TEXT REMOVAL" WITHIN THE VARIOUS COMMAND FUNCTIONS.            ***
+
+
+ 688, "** UNUSED ERROR MESSAGE - USS Los Angeles (SSN-688) **"
+ 689, "?Drive \042"
+ 690, "\042 is not a DBLSPACE drive.\r\n\n"
+ 691, "\042 is IN USE - cannot 'UNMOUNT' drive.\r\n\n"
+ 692, "Drive \042"                                        /* no leading '?' */
+ 693, "\042 is a VIRTUAL (SUBST) drive for \042"
+ 694, "?Error reading volume label for drive.\r\n\n"
+ 695, "?Sorry - this DBLSPACE function has not been implemented...\r\n\n"
+ 696, "?Error obtaining DBLSPACE drive info.\r\n\n"
+ 697, "?Unable to perform DRIVE SWAP prior to UNMOUNT.\r\n\n"
+ 698, "?Error performing UNMOUNT operation."
+ 699, "  (Warning:  Host drive remains 'unswapped')\r\n\n"
+ 700, "\042 has been successfully 'UNMOUNT'ed!\r\n\n"
+ 701, "The USS La Jolla (SSN-701), the best submarine in the world\r\n"
+ 702, "\r\n   The actual compression ratio is "
+ 703, " to 1.\r\n\r\n** based on estimated compression ratio of "
+
+
+ 704, "Compressed drive "
+ 705, "  (SWAPPED)"
+ 706, "\r\nCreated on "
+ 707, " at "
+ 708, "\r\nDrive "
+ 709, " is stored on uncompressed drive "
+ 710, " in the file "
+ 711, ".\r\n\n"
+ 712, "                    Compressed      Uncompressed\r\n                      Drive "
+ 713, "          Drive "
+ 714, "   Total space:    "
+ 715, " MB      "
+ 716, " MB\r\n"
+ 717, "   Space Used:     "
+ 718, "   Space Free:     "
+ 719, " MB**    "
+
+
+ 720, " to 1.\r\n\n"
+ 721, "Drive  Type                        Total Free  Total Size  CVF Filename   \r\n"
+ 722, "-----  --------------------------  ----------  ----------  ---------------\r\n"
+ 723, "  "
+ 724, "    "
+ 725, "Compressed Removeable     "
+ 726, "Compressed Fixed Drive    "
+ 727, "Compressed Remote Drive   "
+ 728, "Compressed Volume (?)     "
+ 729, "Virtual ('SUBST'ed) Drive\r\n"
+ 730, "Virtual ('JOIN'ed) Drive\r\n"
+ 731, "Network Drive             "
+ 732, "Installable File System   "
+ 733, "Removable-media drive     "
+ 734, "Local Fixed Drive         "
+ 735, "?Unknown Drive Type       "
+
+
+ 736, "No Disk in Drive\r\n"
+ 737, " MB  "
+ 738, "?Incorrect DOS Version\r\n\n"
+ 739, "?Function not available - DBLSPACE not loaded\r\n\n"
+ 740, "SFTShell - Command Line Pathway to Microsoft(r) DBLSPACE, Release "
+ 741, "CURRENT DATE:  "
+ 742, "Delete \042"
+ 743, "\042... are you sure?"
+ 744, "Deleting "
+ 745, " Volume in drive '"
+ 746, "' is "
+ 747, " 'DBLSPACE' Compressed drive    HOST: "
+ 748, "Directory of "
+ 749, "NAME    .EXT  Type   File Size    Date     Time    Comp Ratio\r\n-------- ---  -----  ---------  -------- --------  ----------\r\n"
+ 750, "NAME    .EXT  Type   File Size    Date     Time\r\n-------- ---  -----  ---------  -------- --------\r\n"
+ 751, "\r\033[K"
+
+
+ 752, "Average Compression Ratio:  "
+ 753, "Overall Average Compression Ratio:  "
+ 754, "ENTER DRIVE TO FORMAT: "
+ 755, "VOLUME LABEL (<ENTER> for none)? "
+ 756, ": => "
+ 757, "' is "
+ 758, "       ** MS-DOS(r) Version 2.x Open Files **\r\n File/Dev Name Open Share Cur File Cur File\r\nDrive:Name.Ext Mode Mode  Pointer   Length \r\n-------------- ---- ----- -------- --------\r\n"
+ 759, "                 ** MS-DOS(r) Version 3.0 Open Files **\r\n"
+ 760, "                 ** MS-DOS(r) Version 3.X Open Files **\r\n"
+ 761, "               ** MS-DOS(r) Version 4.x-6.x Open Files **\r\n"
+ 762, " File/Dev Name Open Share Machine Owner Cur File Cur File Owner Owner     \r\n"
+ 763, "Drive:Name.Ext Mode Mode    ID     PSP  Pointer   Length  Task  Module    \r\n"
+ 764, "-------------- ---- ----- ------- ----- -------- -------- ----- ----------\r\n"
+ 765, "MODULE NAME  HANDLE    Code     Data &    Other     Total    Discard-\r\n"
+ 766, "(Prog, Lib)  (Hex)   Segments  Resource   Memory    in Use     able  \r\n"
+ 767, "-----------  ------  --------  --------  --------  --------  --------\r\n"
+
+
+
+
+ 768, "?Required DLL (WREXX.DLL) not present\r\n\n"
+ 769, "?Problem with WREXX.DLL - unable to use library\r\n\n";
+ 770, "?Not enough resources to perform REXX call\r\n\n"
+ 771, "?Unable to properly execute REXX command\r\n\n"
+ 772, "?Abnormal REXX program termination\r\n\n"
+ 773, "?REXX Callback error - unsupported function code\r\n\n"
+ 774, "Input truncated\r\n"
+ 775, "REXX DEBUG 'TRACE' MESSAGE:\r\n"
+ 776, "?A weird call from RxSioCallBack() has occurred\r\n\n"
+ 777, "(MESSAGE #777) By the way, '777' would be GOD's number - that is, 3 '7's for 3 'completes', and indicating the triune nature of God.\r\n\n"
+ 778, "?Not enough memory to perform 'HOST' command\r\n\n"
+ 779, "?Not enough memory to return result\r\n\n"
+ 780, "?A weird call from RxHaltCallBack() has occurred\r\n\n"
+ 781, "?Input was lost - not enough memory!\r\n\n"
+ 782, "** UNUSED WREXX MESSAGE **"
+ 783, "** UNUSED WREXX MESSAGE **"
+
+
+
+ 784, "?Internal error - NULL selector in 'GetAnotherBatchLine()'\r\n\n"
+ 785, "?Not enough memory to continue batch file operations!\r\n\n"
+ 786, "?Batch file error - line too long!  Terminating...\r\n\n"
+ 787, "?Internal error - label syntax error\r\n"
+ 788, "?Error reading batch file!\r\n"
+ 789, "?Error reading batch file in GOTO (internal)!\r\n"
+ 790, "?Error reading batch file!\r\n"
+ 791, "?Error - out of 'DOS' (real mode) memory, cannot qualify path!\r\n\n"
+ 792, "?Not enough memory to perform operation\r\n\n"
+ 793, "?Memory allocation error - running out of memory!\r\n\n"
+ 794, "?Running out of system memory - can't perform indicated operation.\r\n\n"
+ 795, " --> "
+ 796, "Press <ENTER> to continue:  "
+ 797, "Module \042"
+ 798, "\042 successfully unloaded!\r\n\n"
+ 799, "\r\033[45C"
+
+
+ 800, "?Mismatched quote in string constant\r\n"
+ 801, "?Improper string constant\r\n"
+ 802, "?Syntax error - parentheses mismatch!\r\n"
+ 803, "?Syntax error - illegal 'unary' operator\r\n"
+ 804, "?Syntax error - parentheses mismatch in function call\r\n"
+ 805, "?Syntax error - no operator following ')'\r\n"
+ 806, "?Syntax error - mismatched '[]' in array subscript\r\n"
+ 807, "?Syntax error - no operator following ']'\r\n"
+ 808, "?Syntax error - parentheses mismatch - extra ')' found\r\n"
+ 809, "?Incomplete equation evaluation - "
+ 810, "terminated by comma\r\n(Remainder of equation was ignored)\r\n"
+ 811, "\042 remains...\r\n"
+ 812, "?Warning - numeric argument expected\r\n"
+ 813, "?Warning - number truncated\r\n"
+ 814, "?Warning - illegal digit in number, information lost\r\n"
+ 815, "?Syntax error - no function \042"
+
+
+ 816, "?Illegal number of arguments in \042"
+ 817, "?Error obtaining directory of \042"
+ 818, "?Internal error (1) in 'MODULEINFO()'\r\n"
+ 819, "?Internal error (2) in MODULEINFO()\r\n"
+ 820, "?Internal error in TASKINFO()\r\n"
+ 821, "?Illegal drive specification - \042"
+ 822, "?Error getting directory in GetDir()\r\n"
+ 823, "?Undefined function (internal error)\r\n"
+ 824, "\042 must have at least 1 index\r\n\n"
+ 825, "\042 cannot have more than 2 indices\r\n\n"
+ 826, "?Array syntax error in \042"
+ 827, "\042 - element truncated\r\n"
+ 828, "?Unexpected Operator - internal error\r\n"
+ 829, "?Syntax error - '[]', '()', or ','\r\n"
+ 830, "?Unexpected 2nd argument with unary operator\r\n"
+ 831, "?Array must have either 1 or 2 indices\r\n"
+
+
+
+ 832, "?Warning - variable \042"
+ 833, "\042 begins with numeric digit\r\n"
+ 834, "?Illegal 'FILEOPEN()' mode\r\n"
+ 835, "?Error attempting to open file in 'FILEOPEN()'\r\n"
+ 836, "?Error attempting to read from file in 'READLN()'\r\n"
+ 837, "?Error attempting to write to file in 'WRITELN()'\r\n"
+ 838, "   TASK      MODULE    INSTANCE    MODULE    MAIN WINDOW\r\n"
+ 839, "  HANDLE      NAME      HANDLE     HANDLE      CAPTION  \r\n"
+ 840, " --------   --------   --------   --------   -----------\r\n"
+ 841, "** INTERNAL ERROR **\r\n"
+ 842, "** N/A **\r\n"
+ 843, "\r\033[20C"
+ 844, "CURRENT TIME: "
+ 845, " ..."
+ 846, "\r\nWAITING FOR "
+ 847, " (Y/n)?  "
+
+
+ 848, " \033[1;37;41m** CONTEXT HELP **"
+ 849, " \033[1;37;41m** HELP 'KEYS' **"
+ 850, " \033[1;37;41m** HELP 'VARIABLES' **"
+ 851, " \033[1;37;41m** HELP 'ANSI' **"
+ 852, "!!!\r\n"
+ 853, "No files added to COPY QUEUE.\r\nSource file specification does not match any existing files\r\n\n"
+ 854, "?\042"
+ 855, "\042 not yet supported\r\n\n"
+ 856, "REXX DEBUG TERMINAL INPUT:\r\n"
+ 857, "===================  ========  ========  ========  ========  ========\r\n"
+
+
+ ; additional strings needed for Chicago/DOS 7 stuff
+
+ 864, "    ** MS-DOS(r) Version 7+ Open Files Using System File Table **\r\n"
+ 865, "         ** MS-DOS(r) Version 7+ Protected Mode Open Files **\r\n"
+ 866, "NAME    .EXT  Type   File Size    Date     Time    Ratio  Long Name\r\n-------- ---  -----  ---------  -------- --------  -----  ---------------------\r\n"
+ 867, "NAME    .EXT  Type   File Size    Date     Time    Long Name\r\n-------- ---  -----  ---------  -------- --------  ----------------------------\r\n"
+ 868, "?Invalid 'long' file name specified\r\n"
+ 869, "  File Name    Open Share Access                                              \r\n"
+ 870, "Drive:Name.Ext Mode Mode   Type   Directory Name                              \r\n"
+ 871, "-------------- ---- ----- ------- --------------------------------------------\r\n"
+ 872, "?Read-only file \042"
+ 873, "?Hidden file \042"
+ 874, "?Missing or invalid library name in DEFINE\r\n\n"
+ 875, "?Missing function name in DEFINE\r\n\n"
+ 876, "?Missing return data type in DEFINE command for external function\r\n\n"
+ 877, "?Invalid '@ordinal' value in DEFINE command for external function\r\n\n"
+ 878, "?Missing parameter list in DEFINE\r\n\n"
+ 879, "?Parameter list syntax error in DEFINE\r\n\n"
+
+
+ ; ODBC messages
+
+ 880, "ODBC has not been installed properly\r\n"
+ 881, "ODBC ERROR Class=\042"
+ 882, "ODBC 'SUCCESS WITH INFO' ERROR Class=\042"
+ 883, "ODBC ERROR - unable to allocate environment\r\n\n"
+ 884, "ODBC ERROR - driver only allows READ access on table\r\n\n"
+ 885, "ODBC CREATE/DROP missing 'STATEMENT' keyword\r\n\n"
+ 886, "ODBC ERROR - invalid conversation value\r\n\n"
+ 887, "ODBC OPEN ERROR - missing table name in 'ODBC OPEN'\r\n\n"
+ 888, "ODBC SQL ERROR - specified syntax requires batch file\r\n\n"
+ 889, "ODBC SQL WARNING - BLANK SQL Program ignored\r\n\n"
+ 890, "ODBC BIND - Command Syntax Error\r\n\n"
+ 891, "ODBC BIND - Invalid column name or number\r\n\n"
+
+ 892, "?Missing expression in 'WHILE'\r\n\n"
+ 893, "?Missing expression in 'UNTIL'\r\n\n"
+ 894, "?Missing END WHILE/WEND in WHILE loop\r\n\n"
+ 895, "?EXIT LOOP/CONTINUE not valid outside of loop\r\n\n"
+
+
+ ; additional messages (for 'DEFINE' and various LOOP processing)
+
+ 896, "DEFINE ERROR - LIB not found\r\n\n"
+ 897, "DEFINE ERROR - inline function text is too long\r\n\n"
+ 898, "END DEFINE - extraneous characters found on line, ignored.\r\n\n"
+ 899, "DEFINE ERROR - No 'END DEFINE' found\r\n\n"
+ 900, "\042 - invalid option for 'END' command\r\n\n"
+ 901, "'END DEFINE' not valid outside of DEFINE block\r\n\n"
+ 902, "?Improperly nested IF/ELSE/ENDIF block\r\n\n"
+ 903, "?Misplaced 'END DEFINE' command inside nested block\r\n\n"
+ 904, "?Improperly nested FOR/NEXT block\r\n\n"
+ 905, "?Improperly nested REPEAT/UNTIL block\r\n\n"
+ 906, "?Improperly nested WHILE/WEND block\r\n\n"
+ 907, "?Too many nested IF/FOR/REPEAT/WHILE commands\r\n\n"
+ 908, "?NEXT/UNTIL/WEND not valid outside of loop\r\n\n"
+ 909, "?Missing FOR command in NEXT\r\n\n"
+ 910, "?Missing REPEAT command in UNTIL\r\n\n"
+ 911, "?Missing WHILE command in END WHILE/WEND\r\n\n"
+
+
+ 912, "?Missing UNTIL in REPEAT/UNTIL loop\r\n\n"
+ 913, "?Missing NEXT in FOR/NEXT loop\r\n\n"
+ 914, "?Missing IF in IF/ELSE/ENDIF\r\n\n"
+ 915, "?Missing ENDIF in IF/ELSE/ENDIF\r\n\n"
+ 916, "?Misplaced 'ELSE' in IF/ELSE/ENDIF block\r\n\n"
+ 917, "?Misplaced 'ELSE IF' in IF/ELSE/ENDIF block\r\n\n"
+ 918, "?ENDIF not valid without corresponding 'IF'\r\n\n"
+ 919, "?Missing PROGRAM NAME in 'START'\r\n\n"
+
+
+ // additional ODBC messages
+
+ 920, "ODBC ERROR - Transactions NOT supported by this driver\r\n\n"
+ 921, "ODBC ERROR - driver does not support 'SQLExtendedFetch()'\r\n\n"
+ 922, "ODBC ERROR - 'Read Only' access does not allow INSERT/UPDATE/DELETE\r\n\n"
+ 923, "ODBC ERROR - driver neither supports 'SQLExtendedFetch()' nor named cursors\r\n\n"
+ 924, "ODBC ERROR - no bound fields for ADD/UPDATE\r\n\n"
+ 925, "ODBC TRANSACT - Command Syntax Error\r\n\n"
+
+ // additional 'NET' messages
+
+ 926, "NET - Function not available\r\n\n"
+ 927, "NET VIEW - Function not available\r\n\n"
+
+
+ ; 928 is next '16-multiple'
+
+
+ ; 944 is next '16-multiple'
+
+
+
+
+END

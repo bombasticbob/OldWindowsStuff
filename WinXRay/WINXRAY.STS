@@ -1,0 +1,45 @@
+PWB-GENERATED FILE: DO NOT MODIFY
+[shared-]
+                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                          
+                                           
+	version=3
+	pmark="d:\ddk\inc32\vmm.inc" 1551 1
+	project="C:\SOURCE\WINXRAY\winxray.mak"
+	buildmode=2
+[edit-]
+	file="d:\ddk\inc32\vmm.inc" 1548 1 1551 1
+	file="C:\SOURCE\WINXRAY\winxray2.asm" 277 1 280 35
+	file="C:\SOURCE\WINXRAY\winxray.mak" 31 1 44 1
+	file="C:\SOURCE\WINXRAY\winxray.h" 546 1 555 1
+	file="C:\SOURCE\WINXRAY\winxray.c" 1486 1 1491 1
+	file="C:\SOURCE\wincmd\wincmd.c" 539 1 558 1
+	file="C:\SOURCE\WINXRAY\winxray1.c" 198 1 227 1
+	file="C:\SOURCE\WINXRAY\winxray.map" 1153 1 1167 30
+	srch=DemandInfo
+	fSrchRe=0
+	rpl=lpVXDBuf
+	src=lpPageBuf
+	fRplRe=17408
+[pwb]
+	screen=50 80
+	winstyle=7
+	wnd=R 1 0 35 80 0 0
+	file="<COMPILE>Build Results" 1 1 1 1
+	wnd=r 32 0 49 80 0 0
+	file="<SEARCH>Search Results" 1 1 1 1
+	wnd=c 0 0 0 0 0 0
+	file="<PRINT>Print Results" 1 1 1 1
+	wnd=c 0 0 0 0 0 0
+	file="<RECORD>Record" 1 1 1 1
+	wnd=c 0 0 0 0 0 0
+	file="<CLIPBOARD>Clipboard" 1 1 1 1
+	wnd=c 0 0 0 0 0 0
+	file="<pwbhelp>Help" 1 1 1 1
+	wnd=c 1 0 19 80 0 0
+	file="<browse>Browser Output" 1 1 1 1
+	wnd=c 0 0 0 0 0 0

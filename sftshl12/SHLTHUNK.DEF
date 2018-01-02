@@ -1,0 +1,33 @@
+; ** MODULE DEFINITION FILE FOR SHLTHUNK.DLL
+
+LIBRARY SHLTHUNK.DLL
+DESCRIPTION 'thunk DLL for SFTShell application'
+
+CODE PRELOAD SHARED DISCARDABLE
+DATA PRELOAD SINGLE
+
+HEAP 4096
+
+IMPORTS
+  C16ThkSL01     = KERNEL.631
+  ThunkConnect16 = KERNEL.651
+
+
+EXPORTS
+  WEP                    @1 RESIDENTNAME
+
+  MyGetModuleUsage
+  lpGlobalFirst
+  lpGlobalNext
+  lpMemManInfo
+  lpModuleFirst
+  lpModuleNext
+  lpTaskFindHandle
+  lpModuleFindHandle
+  lpIsTask
+  lpTaskFirst
+  lpTaskNext
+  GetDosMaxDrives
+  GetTDBFromPSP
+  GetTaskAndModuleFromPSP
+

@@ -1,0 +1,37 @@
+{\rtf1\ansi\deff0\deftab720{\fonttbl{\f0\fnil MS Sans Serif;}{\f1\fnil Symbol;}{\f2\fnil Courier;}{\f3\fswiss Arial;}{\f4\fnil Arial;}{\f5\fnil Arial;}}
+{\colortbl\red0\green0\blue0;}
+\pard\qc\plain\f4\fs28\b Memory Paging on the 80x86 Processors
+\par \pard\plain\f4\fs20 
+\par 80386 (and later) CPU's have a built-in MEMORY PAGING system that allows an operating system (like Microsoft Windows in Enhanced Mode, or Windows NT) to provide VIRTUAL MEMORY by the use of a PAGE TABLE to mark individual MEMORY PAGES as 'present' or 'not present', and to indicate their PHYSICAL RAM address when they are marked 'present'.  Whenever a program attempts to access a page which is either protected or 'not present', a page fault exception occurs.  The operating system can then determine how to handle the exception, either by loading the appropriate page from disk, terminating the program, or passing the error along to the program for structured exception handling.
+\par 
+\par 
+\par \plain\f4\fs20\b\ul The memory paging system consist of the following components:
+\par \pard\li2160\fi-2160\plain\f4\fs20\b CR3:\plain\f4\fs20 \tab Control Register 3, the page table directory's PHYSICAL address in RAM. (32 bits)
+\par \plain\f4\fs20\b PAGE DIRECTORY:\plain\f4\fs20 \tab An array of 1024 32-bit 'Page Table' addresses in PHYSICAL RAM.  Each 'Page Table' is 4096 bytes in size.  The low 12 bits of the address contain flags indicating whether the page table is present in RAM, the type of access that is allowed for the pages referenced by the page table, and other information.  (See below).
+\par \plain\f4\fs20\b PAGE TABLE:\plain\f4\fs20 \tab An array of 1024 32-bit 'Memory Page' addresses in PHYSICAL RAM.  Each 'Memory Page' is 4096 bytes in size, and contains the actual data referencec by the LINEAR address corresponding with the \plain\f4\fs20\b PAGE DIRECTORY \plain\f4\fs20 and \plain\f4\fs20\b PAGE TABLE\plain\f4\fs20  entries.  The low 12 bits of the address contain flags indicating whether the page is present in RAM, the type of access that is allowed for this page, and other information (see below).
+\par \plain\f4\fs20\b MEMORY PAGE:\plain\f4\fs20 \tab This is the actual data referenced by the LINEAR ADDRESS.  See below.
+\par 
+\par \pard\plain\f4\fs20 To convert from a LINEAR ADDRESS (contained within a 32-bit pointer, for example) to a PHYSICAL ADDRESS, the CPU performs the following calculations:
+\par 1) The PAGE DIRECTORY (pointed to by CR3) is accessed to obtain the page table address in PHYSICAL RAM.  The most significant 10 bits of the linear address (bits 22 through 31) select the appropriate 32-bit PAGE DIRECTORY entry (0 through 1023) from this table.  If the 'P' (present) bit is not set, or the access mode violates this page table's assigned protection, a Page Fault occurs.
+\par 2) The PAGE TABLE (pointed to by the PAGE DIRECTORY entry) is accessed to obtain the memory page address.  The next most significant 10 bits of the linear address (bits 12 through 21) select the appropriate 32-bit PAGE TABLE entry (0 through 1023) from this table.  If the 'P' (present) bit is not set, or the access mode violates this page's assigned protection, a Page Fault occurs.
+\par 3) The least significant 12 bits (bits 0 through 11) are added to the physical address obtained from the PAGE TABLE to obtain the actual memory address.  (Memory accesses for WORD and DWORD values may legally cross page boundaries).
+\par 
+\par 
+\par \plain\f4\fs20\b\ul Bits for a PAGE DIRECTORY entry and a PAGE TABLE entry are as follows:
+\par \plain\f4\fs20\b Bits 12 through 31:\plain\f4\fs20   Upper 20 bits of the physical address of the item being referenced by the table.  In the case of a PAGE DIRECTORY, it points to a PAGE TABLE.  In the case of a PAGE TABLE, it points to a memory page.  The low 12 bits (bits 0 through 11) for this address are assumed to be zero.
+\par 
+\par \plain\f4\fs20\b Bit 0:\plain\f4\fs20 \tab This is the 'P' (present) bit.  If set, the upper 20 bits point to the PHYSICAL RAM location of the appropriate data (PAGE TABLE or memory page).
+\par \plain\f4\fs20\b Bit 1:\plain\f4\fs20 \tab This is the 'R/W' (Read/Write access) bit.  If this bit is set, and Bit 2 is set, Ring 3 applications can write to to this page (or range of pages if it points to a PAGE TABLE).  Ring 0, Ring 1, or Ring 2 applications are NOT affected by this bit.  Otherwise, a write access by a Ring 3 application will cause a Page Fault exception.
+\par \plain\f4\fs20\b Bit 2:\plain\f4\fs20 \tab This is the 'U/S' (User/Supervisor) bit.  If this bit is set, the page (or range of pages if it points to a PAGE TABLE) can be accessed by a Ring 3 (User) application, and Bit 1 determines whether WRITE access is enabled for Ring 3.  If clear, only Ring 0, Ring 1, or Ring 2 applications can access this page, and a read or write access by a Ring 3 application will cause a Page Fault exception.
+\par \plain\f4\fs20\b Bit 3-4:\plain\f4\fs20 \tab These bits are 'reserved' and should be zero.
+\par \plain\f4\fs20\b Bit 5:\plain\f4\fs20 \tab This is the 'Accessed' bit, which is set whenever the memory page (or one of the entries in the page table) pointed to by this entry has been accessed.
+\par \plain\f4\fs20\b Bit 6:\plain\f4\fs20 \tab This is the 'Dirty' bit, which is set whenever the memory page (or one of the entries in the page table) pointed to by this entry has been written to.
+\par \pard\plain\f5\fs20\b Bit 7-8:\plain\f5\fs20 \tab These bits are 'reserved' and should be zero.
+\par \pard\plain\f4\fs20\b Bit 9-11:\plain\f4\fs20  These bits are for use by the OS for whatever purpose is deemed appropriate by its authors.  They can be used to mark a 'page type' [i.e. DISCARDABLE vs PAGE FILE] and other appropriate information.
+\par 
+\par \pard\plain\f3\fs20\b PAGING.RTF\plain\f3\fs20  \'A9\plain\f4\fs20 1994 by \plain\f5\fs20 Robert E. Frazier - all rights reserved
+\par \plain\f4\fs20 This document may be freely duplicated and distributed so long as it is not modified in any way, and the above copyright notice remains.
+\par 
+\par Bibliography:  "80386 Technical Reference" by Edmund Strauss - Brady Books (Simon & Schuster, Inc.) 1987.  ISBN 0-13-246893-X.
+\par 
+\par }

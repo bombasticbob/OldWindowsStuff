@@ -1,0 +1,109 @@
+#################################################################################
+#                                                                               #
+# MAKE FILE for WINCMD.EXE (c) 1991,1992 by R. E. Frazier - all rights reserved #
+#                                                                               #
+#################################################################################
+
+
+DEBUG=1
+
+!IFDEF DEBUG
+link_opt=/COD
+!ELSE
+link_opt=
+!ENDIF
+
+
+!IFDEF RXSHELL
+cl_defines=/DRXSHELL
+!ELSE
+cl_defines=
+!ENDIF
+
+
+
+obj_depend=wincmd.obj wincmdh.obj wincmd_c.obj wincmd_u.obj wincmd_v.obj wincmd_x.obj wcalc.obj winfrmat.obj hugemem1.obj
+other_exe_depend=mth.lib wincmd.def wincmd.mak
+obj_link=wincmd+wincmdh+wincmd_c+wincmd_u+wincmd_v+wincmd_x+wcalc+winfrmat+hugemem1
+lib_files=libw.lib mlibcew.lib win87em.lib mth.lib oldnames.lib
+cl_options=-c -AMw -FPi -G2sw -Lw -W3 -Zeilp2 $(cl_defines)
+optimize=-Ocilntw
+optimize_max=-Ob2cegilrtw
+pch_options=-Yd -Yc
+#pch_options=-Yc
+
+
+
+all: wincmd.res wincmd.exe
+
+
+
+bootsys.obj: bootsys.asm
+    masm /ZI /MU bootsys.asm,bootsys,bootsys;
+
+bootsys.bin: bootsys.obj
+    link /T bootsys.obj,bootsys.bin,;
+
+wincmd.res: wincmd.rc wincmd.h wincmd.ver caret1.bmp caret2.bmp bootsys.bin
+    rc -r wincmd.rc
+
+
+mywin.pch: mywin.c mywin.h
+    cl $(cl_options) $(optimize) $(pch_options) mywin.c
+
+
+mth.obj: mth.c mth.h
+    cl -Fomth.obj $(cl_options) $(optimize) mth.c
+
+mth.lib: mth.obj
+    del mth.lib
+    lib mth.lib +mth.obj,;
+
+
+
+winfrmat.obj: winfrmat.c mywin.pch wincmd.h
+    cl -Fowinfrmat.obj $(cl_options) $(optimize) -YuMYWIN.H winfrmat.c
+
+wincmdh.obj: wincmdh.asm
+    masm /ZI /MU wincmdh.asm;
+
+wincmd.obj: wincmd.c mywin.pch wincmd.h
+    cl -Fowincmd.obj $(cl_options) $(optimize) -YuMYWIN.H wincmd.c
+
+wincmd_c.obj: wincmd_c.c mywin.pch wincmd.h
+    cl -Fowincmd_c.obj $(cl_options) $(optimize) -YuMYWIN.H wincmd_c.c
+
+wincmd_u.obj: wincmd_u.c mywin.pch wincmd.h
+    cl -Fowincmd_u.obj $(cl_options) $(optimize) -YuMYWIN.H wincmd_u.c
+
+wincmd_v.obj: wincmd_v.c mywin.pch wincmd.h wincmd.ver
+    cl -Fowincmd_v.obj $(cl_options) $(optimize) -YuMYWIN.H wincmd_v.c
+
+wincmd_x.obj: wincmd_x.c mywin.pch wincmd.h
+    cl -Fowincmd_x.obj $(cl_options) $(optimize) -YuMYWIN.H wincmd_x.c
+
+wcalc.obj: wcalc.c mywin.pch wincmd.h
+    cl -Fowcalc.obj $(cl_options) $(optimize_max) -YuMYWIN.H wcalc.c
+
+hugemem1.obj: hugemem1.asm
+    MLX  /I. /Zm /c  /Zi /Cu /Fohugemem1.obj /Flhugemem1.lst /Ta hugemem1.asm
+#    masm /ZI /MU hugemem1.asm,hugemem1,hugemem1;
+
+
+
+
+wincmd.exe:: $(obj_depend) $(other_exe_depend)
+    link /NOD /NOE /MAP /LI $(link_opt) /NOPACKC /SEG:512 /ON:N @<<WINCMD.LNK
+    $(obj_link),
+    wincmd,wincmd,
+    $(lib_files),
+    wincmd.def;
+
+<<KEEP
+
+
+# do this whenever the one above is done (and afterwards), or 'wincmd.res'
+# changes.  It *must* have the same dependencies plus 'wincmd.res'!!
+
+wincmd.exe:: $(obj_depend) $(other_exe_depend) wincmd.res
+    rc -t -30 wincmd.res

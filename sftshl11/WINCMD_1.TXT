@@ -1,0 +1,91 @@
+     ** WinCMD - The Command Line Interpreter for Windows(tm) **
+    Copyright (c) 1991,1992 by R. E. Frazier (all rights reserved)
+
+Thank you for trying WinCMD!  This program is the result of sheer
+frustration with Microsoft(r) Windows(tm) when it comes to setting up
+'batch processes' and being able to 'type in' a command.  Sometimes
+it's just FASTER to type the command in, than to open a group, click
+an icon, select from a menu or dialog box, etc.  Also, the ability
+to create batch files to perform commonly repeated sequences of events
+is just too useful NOT to have included it in Windows in the first
+place!  So, this application came into being.  It was intended to look
+as much like 'COMMAND.COM' as possible, with lots of other nice stuff
+that's specific to Windows.  Other, similar applications have also been
+written, but I think this one's the best (and I hope you do also)!
+
+Some of the nicer features of this program include (but are not limited
+to) the following:
+
+   ONLINE HELP - type 'HELP' at the prompt for more information
+
+   MS-DOS(r) 5.0 compatibility for most commands
+
+   BACKGROUND COPY and FORMAT operations - you can still use WINCMD
+   while copies or format operations are in progress.  That way you
+   can type in the next file to copy (or disk to format) while the 
+   previous one(s) are copying or formatting (as well as just being
+   able to use the machine).  This can save alot of time!
+
+   ANSI sequence support - Everything except BLINKING text is fully
+   supported, including cursor motion.  For those of us (like me) who
+   use a full-color PROMPT, it's the difference between GOOD and GREAT!
+
+   WINDOWS specific features - PLAYSOUND, DDE, LOAD, CLOSETASK, KILLTASK,
+                               TASKLIST, and 'FILE ASSOCIATION' SUPPORT
+
+   As an icon, WinCMD is a DRAG/DROP client - you can drop a file onto
+   WinCMD from File Manager, which then 'types in' the filename to the
+   input buffer.  This name either executes on the command prompt, or
+   (if 'INPUT' is active) gets entered into an environment variable via
+   the 'INPUT' command.
+
+   EXTENSIONS to 'IF' and 'FOR' - enhancements which help write
+   'intelligent' batch files.
+
+   THE CALCULATION ENGINE - use expressions within parentheses in the
+   'IF' command, or within '%' operators for text substitution.  Also
+   the 'CALC' command prints the result of an expression, and the 'LET'
+   command assigns the result of an expression to an environment 
+   variable.  Over 70 functions (arithmetic, string, date/time, boolean,
+   program control, and 'Windows Specific' [advanced]) can turn batch 
+   files into high level language applications capable of controlling
+   other applications (by 'typing' keystrokes into them), monitoring
+   the progress and results of various operations, and so forth.
+
+
+If you find this program useful, you may license it for $40.  This
+includes Postage/Handling for 1 free upgrade, plus the documentation for
+the CALCULATION ENGINE: the 'CALCULATION SUPPLEMENT'.  This 38 page
+document explains (in detail) how to use the various operators and
+functions provided by the CALCULATION ENGINE, and provides sample 'BATCH'
+applications to illustrate some of the more powerful features.  It is
+especially worth-while for those users who have 'nightly processing' to
+perform (I have written 'BATCH' applications to perform a download from
+a mini-computer, then activate a spreadsheet or other application to use
+the download file to perform reports or analysis.  The process begins
+early in the morning, so that it will complete each day prior to the
+employee's arrival).  Applications that perform 'nightly processing' can
+save HOURS of time each week, by performing repeated operations in a
+smooth and controlled manner, without operator intervention.  One of the
+sample programs, 'CONTROLR.BAT', illustrates how to run an application
+and force 'menu' commands, detect the creation of a DIALOG box (in this
+case, the 'Open' dialog box), then simulate typing in a file name and
+pressing the 'OK' button to load the file.  
+
+
+        To license this product for a single user, send $40 to:
+
+                           Robert E. Frazier
+                       c/o Stewart~Frazier Tools
+                      14729 Camanito Mar de Plata
+                          Del Mar, CA  92014
+                       CIS E-MAIL:  [70172,177]
+
+                     SITE LICENSES are available!
+
+
+(U.S. funds only, please.  Orders outside the U.S., please send funds
+ payable by U.S. banks {Canadian Postal Money Orders OK} to avoid
+ transaction fees.  Consumer is responsible for any tarrifs or duty
+ that might be collected on overseas orders.)
+

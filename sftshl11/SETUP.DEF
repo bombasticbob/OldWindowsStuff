@@ -1,0 +1,20 @@
+NAME         SETUP
+
+DESCRIPTION  'SETUP for SFTShell - Stewart~Frazier Tools, Inc. DOS/BATCH "Shell" - A Command Line Interpreter for Microsoft(r) Windows(tm)'
+
+EXETYPE      WINDOWS       ; required for all Windows applications
+
+STUB         'SMRTSTUB.EXE' 
+
+CODE  PRELOAD MOVEABLE SHARED CONFORMING DISCARDABLE
+
+DATA  PRELOAD MOVEABLE MULTIPLE
+
+HEAPSIZE     1024          ; 1k heap because of LFN's
+STACKSIZE    8192          ; 8k (rather than just 5k)
+
+
+
+EXPORTS
+
+   TempDialogProc    @16 NONAME ; dialog proc for initial screen

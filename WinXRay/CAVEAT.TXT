@@ -1,0 +1,49 @@
+NOTES AND CAVEATS ON 'WINXRAY'
+
+This program has been provided "AS IS" with no warrantees
+whatsoever.  Any damage which may result to your system as
+a direct or indirect result of the use or abuse of this
+program is NOT the responsibility of the author, nor of
+Stewart~Frazier Tools, Inc.  This software is not intended
+for general release to the public at this time.  Please do
+not distribute it outside of the scope of the Beta program.
+
+Please feel free to send any feedback about WINXRAY via CIS
+E-Mail to:  Robert Frazier [70172,177].
+
+
+WINXRAY currently uses undocumented features and an unorthodox
+method to switch to ring #0 via call gates, in order to access
+the 'INT 20' API used by VxD's.  This program has never been
+tested under Windows NT, and is likely to crash the system if
+any function that attempts to access VM information is invoked.
+It uses DPMI functions to allocate and free selectors, in order
+to prevent any restrictions on what the selectors are being
+used for.  It also manipulates the LDT directly, when necessary.
+Basically, it is a very ill-behaved program that gives you some
+useful information that cannot be obtained through any other
+means without significant coding.  Since the program is self-
+contained (it requires no VxD to help it) there is no install
+process required.
+
+'WINXRAY' has been tested under Windows 3.0 (with TOOLHELP),
+Windows 3.1, and M5 Chicago.  All of the information that you
+see is as accurate as possible, with the exception of the
+'PageMap' section, and the 'Files' listing under Chicago (this
+is due to unfinished code in Chicago, and not compatibility).
+The HELP file is mostly complete, and also provides a detailed
+explanation of how protected mode works, and what the various
+entries in the descriptor tables mean.
+
+Current known bugs/problems:
+
+1) LDT and GDT listings are limited to 64k of text, based on
+   the capacity of a list box.  Any selectors listed which
+   attempt to exceed the capacity of a list box are not
+   displayed, so it is possible to have an incomplete list.
+2) PageMap section is NOT fully accurate, though the sections
+   which are marked as 'PHYSICAL RAM' are correct.  Other info
+   is moot under Chicago (like 'VM ID'), and the 'SWAP FILE' vs
+   'NOT PRESENT' distinction is not accurate.
+3) PageMap has no help file entry.
+4) 'VxD List' has no help file entry   

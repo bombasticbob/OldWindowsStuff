@@ -1,0 +1,15 @@
+0) ** IT IS STILL POSSIBLE TO DESTROY A FILE IF YOU ACCIDENTALLY **
+   ** SPECIFY THE SOURCE NAME WITH NO DESTINATION FILE!!!!       **
+1) command args on WINCMD should be displayed at the initial prompt
+2) copy to 'PRN' should involve PRINTMAN!
+3) RENAME/MOVE functions (using 'canonical' names) fail under NETWARE
+4) UAE on exit from .BAT called from FOR command when you hit ctrl-break
+   and CANCEL the operation.
+5) NOVELL NETWARE does not like device names with COPY command - fix!
+   (This is probably due to 'canonical' names using '\\SERVER\path')
+6) Does '>>' work properly on redirections?
+7) Check the SENDKEYS and SENDVIRTUALKEY functions to ensure they work the
+   way you would normally want them to.  If possible, post keystroke 
+   messages to the SYSTEM QUEUE vice the task's message queue!
+8) PLAYSOUND should allow 'SYSTEM SOUND' names to be specified.  At this
+   time, it only accepts file names.

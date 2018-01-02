@@ -1,0 +1,4 @@
+    wincmd+wincmd_t+wincmdh+wincmd_b+wincmd_c+wincmd_d+wincmd_l+wincmd_u+wincmd_e+wincmd_s+wincmd_v+wincmd_x+wcalc+winfrmat+hugemem1,
+    SFTSHELL,SFTSHELL,
+    libw.lib mlibcewm.lib win87em.lib mth.lib oldnames.lib,
+    sftshell.def;

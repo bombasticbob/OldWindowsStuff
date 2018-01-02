@@ -1,0 +1,20 @@
+NAME         TOILET  
+
+DESCRIPTION  '*TOILET* 1.2 for Windows 3.1 (c) 1992-1994 by R. E. Frazier - all rights reserved'
+
+EXETYPE      WINDOWS        ; required for all Windows applications
+
+STUB         'WINSTUB.EXE'
+
+CODE  PRELOAD MOVEABLE DISCARDABLE
+
+DATA  PRELOAD MOVEABLE MULTIPLE
+
+HEAPSIZE     4096
+STACKSIZE    5120
+
+EXPORTS
+        MainWndProc      @1 NONAME
+        About            @2 NONAME
+        UndeleteDlgProc  @3 NONAME
+        SetupDlgProc     @4 NONAME

@@ -1,0 +1,16 @@
+INT 21h function 4302h
+
+Get physical size.  The physical size is the amount of space the
+given file or directory occupies on the volume.  For compressed
+volumes, this is the compressed size.  For uncompressed volumes,
+this is the file size rounded up to the nearest cluster boundary.
+Note that this call works on directories as well as files; thus,
+you can tell how much space a directory itself consumes.
+
+ENTRY	(AX) = 4302h
+	(DS:DX) = path pointer
+
+EXIT	Carry clear
+	    (DX:AX) = physical size of file or directory in bytes
+	Carry set
+	    (AX) = error code

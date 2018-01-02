@@ -1,0 +1,218 @@
+#define ON_WM_COMPACTING(fn, hwnd, wParam, lParam) \
+        case WM_COMPACTING: return(HANDLE_WM_COMPACTING(hwnd, wParam, lParam, fn))
+#define ON_WM_WININICHANGE(fn, hwnd, wParam, lParam) \
+        case WM_WININICHANGE: return(HANDLE_WM_WININICHANGE(hwnd, wParam, lParam, fn))
+#define ON_WM_SYSCOLORCHANGE(fn, hwnd, wParam, lParam) \
+        case WM_SYSCOLORCHANGE: return(HANDLE_WM_SYSCOLORCHANGE(hwnd, wParam, lParam, fn))
+#define ON_WM_QUERYNEWPALETTE(fn, hwnd, wParam, lParam) \
+        case WM_QUERYNEWPALETTE: return(HANDLE_WM_QUERYNEWPALETTE(hwnd, wParam, lParam, fn))
+#define ON_WM_PALETTEISCHANGING(fn, hwnd, wParam, lParam) \
+        case WM_PALETTEISCHANGING: return(HANDLE_WM_PALETTEISCHANGING(hwnd, wParam, lParam, fn))
+#define ON_WM_PALETTECHANGED(fn, hwnd, wParam, lParam) \
+        case WM_PALETTECHANGED: return(HANDLE_WM_PALETTECHANGED(hwnd, wParam, lParam, fn))
+#define ON_WM_FONTCHANGE(fn, hwnd, wParam, lParam) \
+        case WM_FONTCHANGE: return(HANDLE_WM_FONTCHANGE(hwnd, wParam, lParam, fn))
+#define ON_WM_SPOOLERSTATUS(fn, hwnd, wParam, lParam) \
+        case WM_SPOOLERSTATUS: return(HANDLE_WM_SPOOLERSTATUS(hwnd, wParam, lParam, fn))
+#define ON_WM_DEVMODECHANGE(fn, hwnd, wParam, lParam) \
+        case WM_DEVMODECHANGE: return(HANDLE_WM_DEVMODECHANGE(hwnd, wParam, lParam, fn))
+#define ON_WM_TIMECHANGE(fn, hwnd, wParam, lParam) \
+        case WM_TIMECHANGE: return(HANDLE_WM_TIMECHANGE(hwnd, wParam, lParam, fn))
+#define ON_WM_QUERYENDSESSION(fn, hwnd, wParam, lParam) \
+        case WM_QUERYENDSESSION: return(HANDLE_WM_QUERYENDSESSION(hwnd, wParam, lParam, fn))
+#define ON_WM_ENDSESSION(fn, hwnd, wParam, lParam) \
+        case WM_ENDSESSION: return(HANDLE_WM_ENDSESSION(hwnd, wParam, lParam, fn))
+#define ON_WM_CREATE(fn, hwnd, wParam, lParam) \
+        case WM_CREATE: return(HANDLE_WM_CREATE(hwnd, wParam, lParam, fn))
+#define ON_WM_NCCREATE(fn, hwnd, wParam, lParam) \
+        case WM_NCCREATE: return(HANDLE_WM_NCCREATE(hwnd, wParam, lParam, fn))
+#define ON_WM_DESTROY(fn, hwnd, wParam, lParam) \
+        case WM_DESTROY: return(HANDLE_WM_DESTROY(hwnd, wParam, lParam, fn))
+#define ON_WM_NCDESTROY(fn, hwnd, wParam, lParam) \
+        case WM_NCDESTROY: return(HANDLE_WM_NCDESTROY(hwnd, wParam, lParam, fn))
+#define ON_WM_SHOWWINDOW(fn, hwnd, wParam, lParam) \
+        case WM_SHOWWINDOW: return(HANDLE_WM_SHOWWINDOW(hwnd, wParam, lParam, fn))
+#define ON_WM_ENABLE(fn, hwnd, wParam, lParam) \
+        case WM_ENABLE: return(HANDLE_WM_ENABLE(hwnd, wParam, lParam, fn))
+#define ON_WM_SETTEXT(fn, hwnd, wParam, lParam) \
+        case WM_SETTEXT: return(HANDLE_WM_SETTEXT(hwnd, wParam, lParam, fn))
+#define ON_WM_GETTEXT(fn, hwnd, wParam, lParam) \
+        case WM_GETTEXT: return(HANDLE_WM_GETTEXT(hwnd, wParam, lParam, fn))
+#define ON_WM_GETTEXTLENGTH(fn, hwnd, wParam, lParam) \
+        case WM_GETTEXTLENGTH: return(HANDLE_WM_GETTEXTLENGTH(hwnd, wParam, lParam, fn))
+#define ON_WM_WINDOWPOSCHANGING(fn, hwnd, wParam, lParam) \
+        case WM_WINDOWPOSCHANGING: return(HANDLE_WM_WINDOWPOSCHANGING(hwnd, wParam, lParam, fn))
+#define ON_WM_WINDOWPOSCHANGED(fn, hwnd, wParam, lParam) \
+        case WM_WINDOWPOSCHANGED: return(HANDLE_WM_WINDOWPOSCHANGED(hwnd, wParam, lParam, fn))
+#define ON_WM_MOVE(fn, hwnd, wParam, lParam) \
+        case WM_MOVE: return(HANDLE_WM_MOVE(hwnd, wParam, lParam, fn))
+#define ON_WM_SIZE(fn, hwnd, wParam, lParam) \
+        case WM_SIZE: return(HANDLE_WM_SIZE(hwnd, wParam, lParam, fn))
+#define ON_WM_CLOSE(fn, hwnd, wParam, lParam) \
+        case WM_CLOSE: return(HANDLE_WM_CLOSE(hwnd, wParam, lParam, fn))
+#define ON_WM_QUERYOPEN(fn, hwnd, wParam, lParam) \
+        case WM_QUERYOPEN: return(HANDLE_WM_QUERYOPEN(hwnd, wParam, lParam, fn))
+#define ON_WM_GETMINMAXINFO(fn, hwnd, wParam, lParam) \
+        case WM_GETMINMAXINFO: return(HANDLE_WM_GETMINMAXINFO(hwnd, wParam, lParam, fn))
+#define ON_WM_PAINT(fn, hwnd, wParam, lParam) \
+        case WM_PAINT: return(HANDLE_WM_PAINT(hwnd, wParam, lParam, fn))
+#define ON_WM_ERASEBKGND(fn, hwnd, wParam, lParam) \
+        case WM_ERASEBKGND: return(HANDLE_WM_ERASEBKGND(hwnd, wParam, lParam, fn))
+#define ON_WM_NCPAINT(fn, hwnd, wParam, lParam) \
+        case WM_NCPAINT: return(HANDLE_WM_NCPAINT(hwnd, wParam, lParam, fn))
+#define ON_WM_NCCALCSIZE(fn, hwnd, wParam, lParam) \
+        case WM_NCCALCSIZE: return(HANDLE_WM_NCCALCSIZE(hwnd, wParam, lParam, fn))
+#define ON_WM_NCHITTEST(fn, hwnd, wParam, lParam) \
+        case WM_NCHITTEST: return(HANDLE_WM_NCHITTEST(hwnd, wParam, lParam, fn))
+#define ON_WM_QUERYDRAGICON(fn, hwnd, wParam, lParam) \
+        case WM_QUERYDRAGICON: return(HANDLE_WM_QUERYDRAGICON(hwnd, wParam, lParam, fn))
+#define ON_WM_ACTIVATE(fn, hwnd, wParam, lParam) \
+        case WM_ACTIVATE: return(HANDLE_WM_ACTIVATE(hwnd, wParam, lParam, fn))
+#define ON_WM_ACTIVATEAPP(fn, hwnd, wParam, lParam) \
+        case WM_ACTIVATEAPP: return(HANDLE_WM_ACTIVATEAPP(hwnd, wParam, lParam, fn))
+#define ON_WM_NCACTIVATE(fn, hwnd, wParam, lParam) \
+        case WM_NCACTIVATE: return(HANDLE_WM_NCACTIVATE(hwnd, wParam, lParam, fn))
+#define ON_WM_SETFOCUS(fn, hwnd, wParam, lParam) \
+        case WM_SETFOCUS: return(HANDLE_WM_SETFOCUS(hwnd, wParam, lParam, fn))
+#define ON_WM_KILLFOCUS(fn, hwnd, wParam, lParam) \
+        case WM_KILLFOCUS: return(HANDLE_WM_KILLFOCUS(hwnd, wParam, lParam, fn))
+#define ON_WM_KEYDOWN(fn, hwnd, wParam, lParam) \
+        case WM_KEYDOWN: return(HANDLE_WM_KEYDOWN(hwnd, wParam, lParam, fn))
+#define ON_WM_KEYUP(fn, hwnd, wParam, lParam) \
+        case WM_KEYUP: return(HANDLE_WM_KEYUP(hwnd, wParam, lParam, fn))
+#define ON_WM_CHAR(fn, hwnd, wParam, lParam) \
+        case WM_CHAR: return(HANDLE_WM_CHAR(hwnd, wParam, lParam, fn))
+#define ON_WM_DEADCHAR(fn, hwnd, wParam, lParam) \
+        case WM_DEADCHAR: return(HANDLE_WM_DEADCHAR(hwnd, wParam, lParam, fn))
+#define ON_WM_SYSKEYDOWN(fn, hwnd, wParam, lParam) \
+        case WM_SYSKEYDOWN: return(HANDLE_WM_SYSKEYDOWN(hwnd, wParam, lParam, fn))
+#define ON_WM_SYSKEYUP(fn, hwnd, wParam, lParam) \
+        case WM_SYSKEYUP: return(HANDLE_WM_SYSKEYUP(hwnd, wParam, lParam, fn))
+#define ON_WM_SYSCHAR(fn, hwnd, wParam, lParam) \
+        case WM_SYSCHAR: return(HANDLE_WM_SYSCHAR(hwnd, wParam, lParam, fn))
+#define ON_WM_SYSDEADCHAR(fn, hwnd, wParam, lParam) \
+        case WM_SYSDEADCHAR: return(HANDLE_WM_SYSDEADCHAR(hwnd, wParam, lParam, fn))
+#define ON_WM_MOUSEMOVE(fn, hwnd, wParam, lParam) \
+        case WM_MOUSEMOVE: return(HANDLE_WM_MOUSEMOVE(hwnd, wParam, lParam, fn))
+#define ON_WM_LBUTTONDOWN(fn, hwnd, wParam, lParam) \
+        case WM_LBUTTONDOWN: return(HANDLE_WM_LBUTTONDOWN(hwnd, wParam, lParam, fn))
+#define ON_WM_LBUTTONDBLCLK(fn, hwnd, wParam, lParam) \
+        case WM_LBUTTONDBLCLK: return(HANDLE_WM_LBUTTONDBLCLK(hwnd, wParam, lParam, fn))
+#define ON_WM_LBUTTONUP(fn, hwnd, wParam, lParam) \
+        case WM_LBUTTONUP: return(HANDLE_WM_LBUTTONUP(hwnd, wParam, lParam, fn))
+#define ON_WM_RBUTTONDOWN(fn, hwnd, wParam, lParam) \
+        case WM_RBUTTONDOWN: return(HANDLE_WM_RBUTTONDOWN(hwnd, wParam, lParam, fn))
+#define ON_WM_RBUTTONDBLCLK(fn, hwnd, wParam, lParam) \
+        case WM_RBUTTONDBLCLK: return(HANDLE_WM_RBUTTONDBLCLK(hwnd, wParam, lParam, fn))
+#define ON_WM_RBUTTONUP(fn, hwnd, wParam, lParam) \
+        case WM_RBUTTONUP: return(HANDLE_WM_RBUTTONUP(hwnd, wParam, lParam, fn))
+#define ON_WM_MBUTTONDOWN(fn, hwnd, wParam, lParam) \
+        case WM_MBUTTONDOWN: return(HANDLE_WM_MBUTTONDOWN(hwnd, wParam, lParam, fn))
+#define ON_WM_MBUTTONDBLCLK(fn, hwnd, wParam, lParam) \
+        case WM_MBUTTONDBLCLK: return(HANDLE_WM_MBUTTONDBLCLK(hwnd, wParam, lParam, fn))
+#define ON_WM_MBUTTONUP(fn, hwnd, wParam, lParam) \
+        case WM_MBUTTONUP: return(HANDLE_WM_MBUTTONUP(hwnd, wParam, lParam, fn))
+#define ON_WM_NCMOUSEMOVE(fn, hwnd, wParam, lParam) \
+        case WM_NCMOUSEMOVE: return(HANDLE_WM_NCMOUSEMOVE(hwnd, wParam, lParam, fn))
+#define ON_WM_NCLBUTTONDOWN(fn, hwnd, wParam, lParam) \
+        case WM_NCLBUTTONDOWN: return(HANDLE_WM_NCLBUTTONDOWN(hwnd, wParam, lParam, fn))
+#define ON_WM_NCLBUTTONDBLCLK(fn, hwnd, wParam, lParam) \
+        case WM_NCLBUTTONDBLCLK: return(HANDLE_WM_NCLBUTTONDBLCLK(hwnd, wParam, lParam, fn))
+#define ON_WM_NCLBUTTONUP(fn, hwnd, wParam, lParam) \
+        case WM_NCLBUTTONUP: return(HANDLE_WM_NCLBUTTONUP(hwnd, wParam, lParam, fn))
+#define ON_WM_NCRBUTTONDOWN(fn, hwnd, wParam, lParam) \
+        case WM_NCRBUTTONDOWN: return(HANDLE_WM_NCRBUTTONDOWN(hwnd, wParam, lParam, fn))
+#define ON_WM_NCRBUTTONDBLCLK(fn, hwnd, wParam, lParam) \
+        case WM_NCRBUTTONDBLCLK: return(HANDLE_WM_NCRBUTTONDBLCLK(hwnd, wParam, lParam, fn))
+#define ON_WM_NCRBUTTONUP(fn, hwnd, wParam, lParam) \
+        case WM_NCRBUTTONUP: return(HANDLE_WM_NCRBUTTONUP(hwnd, wParam, lParam, fn))
+#define ON_WM_NCMBUTTONDOWN(fn, hwnd, wParam, lParam) \
+        case WM_NCMBUTTONDOWN: return(HANDLE_WM_NCMBUTTONDOWN(hwnd, wParam, lParam, fn))
+#define ON_WM_NCMBUTTONDBLCLK(fn, hwnd, wParam, lParam) \
+        case WM_NCMBUTTONDBLCLK: return(HANDLE_WM_NCMBUTTONDBLCLK(hwnd, wParam, lParam, fn))
+#define ON_WM_NCMBUTTONUP(fn, hwnd, wParam, lParam) \
+        case WM_NCMBUTTONUP: return(HANDLE_WM_NCMBUTTONUP(hwnd, wParam, lParam, fn))
+#define ON_WM_MOUSEACTIVATE(fn, hwnd, wParam, lParam) \
+        case WM_MOUSEACTIVATE: return(HANDLE_WM_MOUSEACTIVATE(hwnd, wParam, lParam, fn))
+#define ON_WM_TIMER(fn, hwnd, wParam, lParam) \
+        case WM_TIMER: return(HANDLE_WM_TIMER(hwnd, wParam, lParam, fn))
+#define ON_WM_INITMENU(fn, hwnd, wParam, lParam) \
+        case WM_INITMENU: return(HANDLE_WM_INITMENU(hwnd, wParam, lParam, fn))
+#define ON_WM_INITMENUPOPUP(fn, hwnd, wParam, lParam) \
+        case WM_INITMENUPOPUP: return(HANDLE_WM_INITMENUPOPUP(hwnd, wParam, lParam, fn))
+#define ON_WM_MENUSELECT(fn, hwnd, wParam, lParam) \
+        case WM_MENUSELECT: return(HANDLE_WM_MENUSELECT(hwnd, wParam, lParam, fn))
+#define ON_WM_MENUCHAR(fn, hwnd, wParam, lParam) \
+        case WM_MENUCHAR: return(HANDLE_WM_MENUCHAR(hwnd, wParam, lParam, fn))
+#define ON_WM_COMMAND(fn, hwnd, wParam, lParam) \
+        case WM_COMMAND: return(HANDLE_WM_COMMAND(hwnd, wParam, lParam, fn))
+#define ON_WM_HSCROLL(fn, hwnd, wParam, lParam) \
+        case WM_HSCROLL: return(HANDLE_WM_HSCROLL(hwnd, wParam, lParam, fn))
+#define ON_WM_VSCROLL(fn, hwnd, wParam, lParam) \
+        case WM_VSCROLL: return(HANDLE_WM_VSCROLL(hwnd, wParam, lParam, fn))
+#define ON_WM_CUT(fn, hwnd, wParam, lParam) \
+        case WM_CUT: return(HANDLE_WM_CUT(hwnd, wParam, lParam, fn))
+#define ON_WM_COPY(fn, hwnd, wParam, lParam) \
+        case WM_COPY: return(HANDLE_WM_COPY(hwnd, wParam, lParam, fn))
+#define ON_WM_PASTE(fn, hwnd, wParam, lParam) \
+        case WM_PASTE: return(HANDLE_WM_PASTE(hwnd, wParam, lParam, fn))
+#define ON_WM_CLEAR(fn, hwnd, wParam, lParam) \
+        case WM_CLEAR: return(HANDLE_WM_CLEAR(hwnd, wParam, lParam, fn))
+#define ON_WM_UNDO(fn, hwnd, wParam, lParam) \
+        case WM_UNDO: return(HANDLE_WM_UNDO(hwnd, wParam, lParam, fn))
+#define ON_WM_RENDERFORMAT(fn, hwnd, wParam, lParam) \
+        case WM_RENDERFORMAT: return(HANDLE_WM_RENDERFORMAT(hwnd, wParam, lParam, fn))
+#define ON_WM_RENDERALLFORMATS(fn, hwnd, wParam, lParam) \
+        case WM_RENDERALLFORMATS: return(HANDLE_WM_RENDERALLFORMATS(hwnd, wParam, lParam, fn))
+#define ON_WM_DESTROYCLIPBOARD(fn, hwnd, wParam, lParam) \
+        case WM_DESTROYCLIPBOARD: return(HANDLE_WM_DESTROYCLIPBOARD(hwnd, wParam, lParam, fn))
+#define ON_WM_DRAWCLIPBOARD(fn, hwnd, wParam, lParam) \
+        case WM_DRAWCLIPBOARD: return(HANDLE_WM_DRAWCLIPBOARD(hwnd, wParam, lParam, fn))
+#define ON_WM_PAINTCLIPBOARD(fn, hwnd, wParam, lParam) \
+        case WM_PAINTCLIPBOARD: return(HANDLE_WM_PAINTCLIPBOARD(hwnd, wParam, lParam, fn))
+#define ON_WM_SIZECLIPBOARD(fn, hwnd, wParam, lParam) \
+        case WM_SIZECLIPBOARD: return(HANDLE_WM_SIZECLIPBOARD(hwnd, wParam, lParam, fn))
+#define ON_WM_VSCROLLCLIPBOARD(fn, hwnd, wParam, lParam) \
+        case WM_VSCROLLCLIPBOARD: return(HANDLE_WM_VSCROLLCLIPBOARD(hwnd, wParam, lParam, fn))
+#define ON_WM_HSCROLLCLIPBOARD(fn, hwnd, wParam, lParam) \
+        case WM_HSCROLLCLIPBOARD: return(HANDLE_WM_HSCROLLCLIPBOARD(hwnd, wParam, lParam, fn))
+#define ON_WM_ASKCBFORMATNAME(fn, hwnd, wParam, lParam) \
+        case WM_ASKCBFORMATNAME: return(HANDLE_WM_ASKCBFORMATNAME(hwnd, wParam, lParam, fn))
+#define ON_WM_CHANGECBCHAIN(fn, hwnd, wParam, lParam) \
+        case WM_CHANGECBCHAIN: return(HANDLE_WM_CHANGECBCHAIN(hwnd, wParam, lParam, fn))
+#define ON_WM_SETCURSOR(fn, hwnd, wParam, lParam) \
+        case WM_SETCURSOR: return(HANDLE_WM_SETCURSOR(hwnd, wParam, lParam, fn))
+#define ON_WM_SYSCOMMAND(fn, hwnd, wParam, lParam) \
+        case WM_SYSCOMMAND: return(HANDLE_WM_SYSCOMMAND(hwnd, wParam, lParam, fn))
+#define ON_WM_CHILDACTIVATE(fn, hwnd, wParam, lParam) \
+        case WM_CHILDACTIVATE: return(HANDLE_WM_CHILDACTIVATE(hwnd, wParam, lParam, fn))
+#define ON_WM_INITDIALOG(fn, hwnd, wParam, lParam) \
+        case WM_INITDIALOG: return(HANDLE_WM_INITDIALOG(hwnd, wParam, lParam, fn))
+#define ON_WM_NEXTDLGCTL(fn, hwnd, wParam, lParam) \
+        case WM_NEXTDLGCTL: return(HANDLE_WM_NEXTDLGCTL(hwnd, wParam, lParam, fn))
+#define ON_WM_PARENTNOTIFY(fn, hwnd, wParam, lParam) \
+        case WM_PARENTNOTIFY: return(HANDLE_WM_PARENTNOTIFY(hwnd, wParam, lParam, fn))
+#define ON_WM_ENTERIDLE(fn, hwnd, wParam, lParam) \
+        case WM_ENTERIDLE: return(HANDLE_WM_ENTERIDLE(hwnd, wParam, lParam, fn))
+#define ON_WM_GETDLGCODE(fn, hwnd, wParam, lParam) \
+        case WM_GETDLGCODE: return(HANDLE_WM_GETDLGCODE(hwnd, wParam, lParam, fn))
+#define ON_WM_CTLCOLOR(fn, hwnd, wParam, lParam) \
+        case WM_CTLCOLOR: return(HANDLE_WM_CTLCOLOR(hwnd, wParam, lParam, fn))
+#define ON_WM_SETFONT(fn, hwnd, wParam, lParam) \
+        case WM_SETFONT: return(HANDLE_WM_SETFONT(hwnd, wParam, lParam, fn))
+#define ON_WM_GETFONT(fn, hwnd, wParam, lParam) \
+        case WM_GETFONT: return(HANDLE_WM_GETFONT(hwnd, wParam, lParam, fn))
+#define ON_WM_DRAWITEM(fn, hwnd, wParam, lParam) \
+        case WM_DRAWITEM: return(HANDLE_WM_DRAWITEM(hwnd, wParam, lParam, fn))
+#define ON_WM_MEASUREITEM(fn, hwnd, wParam, lParam) \
+        case WM_MEASUREITEM: return(HANDLE_WM_MEASUREITEM(hwnd, wParam, lParam, fn))
+#define ON_WM_DELETEITEM(fn, hwnd, wParam, lParam) \
+        case WM_DELETEITEM: return(HANDLE_WM_DELETEITEM(hwnd, wParam, lParam, fn))
+#define ON_WM_COMPAREITEM(fn, hwnd, wParam, lParam) \
+        case WM_COMPAREITEM: return(HANDLE_WM_COMPAREITEM(hwnd, wParam, lParam, fn))
+#define ON_WM_VKEYTOITEM(fn, hwnd, wParam, lParam) \
+        case WM_VKEYTOITEM: return(HANDLE_WM_VKEYTOITEM(hwnd, wParam, lParam, fn))
+#define ON_WM_CHARTOITEM(fn, hwnd, wParam, lParam) \
+        case WM_CHARTOITEM: return(HANDLE_WM_CHARTOITEM(hwnd, wParam, lParam, fn))
+#define ON_WM_QUEUESYNC(fn, hwnd, wParam, lParam) \
+        case WM_QUEUESYNC: return(HANDLE_WM_QUEUESYNC(hwnd, wParam, lParam, fn))
