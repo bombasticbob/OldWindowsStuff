@@ -1,0 +1,34 @@
+PWB-GENERATED FILE: DO NOT MODIFY
+[shared-]
+	version=3
+	pmark="C:\SOURCE\FLIP\flip.c" 357 1
+	project="C:\SOURCE\FLIP\flip.mak"
+	buildmode=2
+[edit-]
+	file="C:\SOURCE\FLIP\flip.c" 342 1 357 1
+	file="C:\SOURCE\FLIP\flip.def" 1 1 3 1
+	file="C:\SOURCE\FLIP\flip.rc" 1 1 1 1
+	file="C:\SOURCE\FLIP\flip.mak" 1 1 10 1
+	file="d:\windev\include\scrnsave.h" 106 1 108 16
+	file="C:\SOURCE\FLIP\flip.h" 1 1 1 1
+	srch=ScreenSaverConfigureDialog
+	fSrchRe=0
+	rpl=szAppName
+	src=szName
+	fRplRe=21248
+[pwb]
+	screen=50 80
+	winstyle=7
+	wnd=R 1 0 34 80 0 0
+	file="<COMPILE>Build Results" 1 1 1 1
+	wnd=r 32 0 49 80 0 0
+	file="<SEARCH>Search Results" 1 1 1 1
+	wnd=c 0 0 0 0 0 0
+	file="<PRINT>Print Results" 1 1 1 1
+	wnd=c 0 0 0 0 0 0
+	file="<RECORD>Record" 1 1 1 1
+	wnd=c 0 0 0 0 0 0
+	file="<CLIPBOARD>Clipboard" 1 1 1 1
+	wnd=c 0 0 0 0 0 0
+	file="<pwbhelp>Help" 1 1 1 1
+	wnd=c 1 0 19 80 0 0
