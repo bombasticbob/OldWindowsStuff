@@ -1,0 +1,14 @@
+NAME        STAR32.SCR
+VERSION 4.0
+DESCRIPTION 'SCRNSAVE :Star2 (WARP!)'
+
+CODE  SHARED EXECUTEREAD
+DATA  MULTIPLE
+
+HEAPSIZE    4096
+STACKSIZE   16384
+
+EXPORTS
+            ScreenSaverProc             @1  
+            ScreenSaverConfigureDialog  @2
+            RegisterDialogClasses       @3

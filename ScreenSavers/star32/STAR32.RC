@@ -1,0 +1,201 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "scrnsave.h"
+#include "winres.h"
+#include "star32.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+100                     ICON                    "star32.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+2003 DIALOGEX 34, 32, 180, 146
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "* 'Star32' - a Screen Saver *"
+FONT 8, "Helv", 0, 0, 0x0
+BEGIN
+    ICON            100,2013,1,1,20,20
+    CTEXT           "'Star32' Screen Saver",2007,24,0,132,8
+    CTEXT           "©1993-96 by R. E. Frazier and SFT, Inc.",2008,24,10,132,
+                    8
+    CTEXT           "All Rights Reserved",2009,8,20,164,8
+    CTEXT           "This is a 'public domain' Windows 95 screen",2010,8,34,
+                    164,8
+    CTEXT           "saver, which may be freely distributed at no",2011,8,43,
+                    164,8
+    CTEXT           "cost (other than that of the transfer media).",2012,8,
+                    52,164,8
+    RTEXT           "Number of STARS:",2000,10,76,64,8
+    EDITTEXT        ID_STARS,80,74,82,12
+    RTEXT           "WARP FACTOR:",2001,10,88,64,8
+    EDITTEXT        ID_WARP,80,86,82,12
+    RTEXT           "Update Interval:",2002,10,100,64,8
+    EDITTEXT        ID_INTERVAL,80,98,82,12
+    DEFPUSHBUTTON   "OK",IDOK,8,128,40,16,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,132,128,40,16
+    PUSHBUTTON      "&About SFT, Inc.",IDC_ABOUT,60,128,60,16
+    CONTROL         "&Play Background Music",IDC_MUSIC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,114,88,8
+    CONTROL         "Anagraphic",IDC_ANAGRAPH,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,104,114,69,8
+END
+
+IDD_ABOUT_SFT DIALOG  0, 0, 225, 166
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About SFT, Inc."
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,88,149,48,14
+    LTEXT           "S.F.T., Inc",IDC_ABOUT_TEXT,6,4,212,118
+    CTEXT           "Internet Home Page:  http://www.catalog.com/sft\nMusic Page:  http://www.catalog.com/sft/bobf/music.html",
+                    IDC_STATIC,6,124,212,18
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""scrnsave.h""\r\n"
+    "#include ""winres.h""\r\n"
+    "#include ""star32.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#include ""star32.rc2""\r\n"
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 4,0,95,0
+ PRODUCTVERSION 4,0,95,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Robert E. Frazier"
+            VALUE "FileDescription", "STAR32"
+            VALUE "FileVersion", "4, 0, 95, 0"
+            VALUE "InternalName", "STAR32"
+            VALUE "LegalCopyright", "Copyright © 1996 by R. E. Frazier - All rights reserved"
+            VALUE "OriginalFilename", "STAR32.SCR"
+            VALUE "ProductName", "STAR32 - A Screen Saver for Windows '95"
+            VALUE "ProductVersion", "4, 0, 95, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_DESCRIPTION         "Star32 (WARP!)"
+END
+
+STRINGTABLE 
+BEGIN
+    idsIsPassword           "PWProtected"
+    1001                    "control.ini"
+    1002                    "ScreenSaver"
+    idsPassword             "Password"
+    idsDifferentPW          "The values for New Password and Retype New Password do not match.\n\nTry again."
+    idsChangePW             "Change Password"
+    idsBadOldPW             "The value for Old Password is not correct.\n\nCheck your screen-saver password, and then try again."
+    1007                    "ScreenSaver.Star2"
+END
+
+STRINGTABLE 
+BEGIN
+    1008                    "Not enough memory to start Help.\n\nQuit one or more applications to increase available memory, and then try again."
+    1009                    "control.hlp"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "star32.rc2"
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
