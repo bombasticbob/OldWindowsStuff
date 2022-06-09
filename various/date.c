@@ -1,3 +1,6 @@
+// date.c - calculate days since 1900-01-01 and day of week
+//
+// No license - public domain
 
 #define FOUR_HUNDRED_YEARS (400L * 365L + 24L * 4L + 1L)
                                            /* number of days in 400 years */
